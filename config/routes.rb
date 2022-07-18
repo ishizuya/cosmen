@@ -11,12 +11,12 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
 
-    get 'users/mypage' => 'public/users#show', as: 'mypage'
-    get 'users/information/edit' => 'public/users#edit', as: 'edit_information'
-    patch 'users/information' => 'public/users#update', as: 'update_information'
-    get 'users/diagnosis' => "public/users#diagnosis", as: "diagnosis"
-    get 'users/result' => "public/users#result", as: "result"
-    patch 'users/save' => "public/users#save", as: "save"
+    get 'users/mypage' => 'users#show', as: 'mypage'
+    get 'users/information/edit' => 'users#edit', as: 'edit_information'
+    patch 'users/information' => 'users#update', as: 'update_information'
+    get 'users/diagnosis' => "users#diagnosis", as: "diagnosis"
+    get 'users/result' => "users#result", as: "result"
+    patch 'users/save' => "users#save", as: "save"
 
     resources :users,only:[:show,:edit,:update]
     resources :items,only:[:index,:show] do
