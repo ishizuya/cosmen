@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    resources :items do
+    get 'search' => 'homes#search', as: 'search'
+    #resources :items do
       resources :reviews,only:[:show,:index,:destroy]
-    end
+    #end
     resources :users,only:[:edit,:update]
   end
 
