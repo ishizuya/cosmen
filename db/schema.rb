@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_23_020428) do
+ActiveRecord::Schema.define(version: 2022_07_23_080657) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_07_23_020428) do
     t.string "brand", default: "", null: false
     t.text "introduction", default: "", null: false
     t.integer "price", null: false
-    t.integer "capacity", null: false
+    t.string "capacity", null: false
     t.date "release_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -95,7 +95,8 @@ ActiveRecord::Schema.define(version: 2022_07_23_020428) do
     t.string "encrypted_password", default: "", null: false
     t.string "name", default: "", null: false
     t.integer "sex", null: false
-    t.integer "skin_type"
+    t.integer "age", null: false
+    t.integer "skin_type", null: false
     t.integer "diagnosis"
     t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"

@@ -1,0 +1,14 @@
+<h1>商品一覧</h1>
+  <div>
+    <%= link_to "商品を追加", new_admin_item_path, class: "btn btn-success" %>
+  </div>
+  <% @items.each do |item| %>
+    <%= image_tag item.get_image(100, 100) %>
+    <p>商品ID：<%= item.id %></p>
+    <p>ブランド名：<%= item.brand %></p>
+    <p>商品名：<%= link_to item.name, admin_item_path(item.id) %></p>
+    <p>ジャンル：<%= item.genre.name %></p>
+    <p>税抜価格：<%= item.price.to_s(:delimited) %>円／<%= item.capacity %></p>
+    <p>-------------------------------------------------</p>
+  <% end %>
+

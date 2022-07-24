@@ -16,4 +16,8 @@ class Public::UsersController < ApplicationController
 
   def save
   end
+
+  def user_params
+    params.require(:user).permit(:name, :age, :email, :sex, :skin_type, :diagnosis)
+  end
 end

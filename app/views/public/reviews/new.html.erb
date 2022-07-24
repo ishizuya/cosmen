@@ -1,2 +1,19 @@
-<h1>Public::Reviews#new</h1>
-<p>Find me in app/views/public/reviews/new.html.erb</p>
+<h1>レビュー投稿</h1>
+  <%= form_with model: @review, url:item_reviews_path, local:true do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :item_id, :value => @item.id %>
+    <p>美白効果</p>
+      <%= f.select :whitening, *[1..5], include_blank: "選択して下さい" %>
+    <p>シワ・たるみ改善効果</p>
+      <%= f.select :wrinkle, *[1..5], include_blank: "選択して下さい" %>
+    <p>保湿効果</p>
+      <%= f.select :moisturizing, *[1..5], include_blank: "選択して下さい" %>
+    <p>肌荒れ・ニキビ改善効果</p>
+      <%= f.select :acne_cure, *[1..5], include_blank: "選択して下さい" %>
+    <p>肌への刺激の無さ</p>
+      <%= f.select :no_irritation, *[1..5], include_blank: "選択して下さい" %>
+    <p>コメント</p>
+      <%= f.text_area :comment %>
+    <%= f.submit "投稿する", class:"btn btn-success" %>
+  <% end %>
+

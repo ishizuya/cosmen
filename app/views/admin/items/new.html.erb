@@ -1,0 +1,21 @@
+<h1>商品追加</h1>
+  <%= form_with model: @item, url:admin_items_path, local:true do |f| %>
+    <p>画像</p>
+      <div id="new-image"></div>
+      <%= f.file_field :image, accept: "image/*" %>
+    <p>ブランド名</p>
+      <%= f.text_field :brand %>
+    <p>商品名</p>
+      <%= f.text_field :name %>
+    <p>ジャンル</p>
+       <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "選択してください" %>
+    <p>参考価格</p>
+      <%= f.text_field :price %>円
+    <p>容量</p>
+      <%= f.text_field :capacity %>
+    <p>販売日時</p>
+      <%= f.date_select :release_date, start_year: 2000 %>
+    <p>商品説明</p>
+      <%= f.text_area :introduction %>
+    <%= f.submit '追加する' %>
+  <% end %>

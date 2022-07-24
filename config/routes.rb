@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
     get 'search' => 'homes#search', as: 'search'
-    #resources :items do
+    resources :items do
       resources :reviews,only:[:show,:index,:destroy]
-    #end
+    end
     resources :users,only:[:edit,:update]
   end
 
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'users/diagnosis' => "users#diagnosis", as: "diagnosis"
     get 'users/result' => "users#result", as: "result"
     patch 'users/save' => "users#save", as: "save"
+    get 'items/ranking' => "items#ranking", as: "ranking"
 
     resources :users,only:[:show,:edit,:update]
     resources :items,only:[:index,:show] do

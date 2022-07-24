@@ -1,2 +1,34 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<h1>商品詳細</h1>
+  <%= image_tag @item.get_image(200, 200) %>
+  <p>ブランド：<%= @item.brand %></p>
+  <p>商品名：<%= @item.name %></p>
+  <p>ジャンル：<%= @item.genre.name %></p>
+  <p>税込価格(税抜価格)：<%= @item.add_tax_price %>(<%= @item.price.to_s(:delimited) %>)円</p>
+  <p>容量：<%= @item.capacity %></p>
+  <p>商品説明：<%= @item.introduction %></p>
+
+  <div>
+    <h4>総評価：<%= @item.avg_reviews %></h4>
+    <p>シワ評価：<%= @item.avg_wrinkle %></p>
+    <p>美白評価：<%= @item.avg_whitening %></p>
+    <p>保湿評価：<%= @item.avg_moisturizing %></p>
+    <p>ニキビケア評価：<%= @item.avg_acne_cure %></p>
+    <p>刺激の無さ評価：<%= @item.avg_no_irritation %></p>
+  </div>
+
+  <%= link_to 'レビューをする', new_item_review_path(@item) %>
+  <h4>レビュー一覧</h4>
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+        <div>
+          <p>美白効果：<%= review.whitening %></p>
+          <p>シワ・たるみ改善効果：<%= review.wrinkle %></p>
+          <p>保湿効果：<%= review.moisturizing %></p>
+          <p>肌荒れ・ニキビ改善効果：<%= review.acne_cure %></p>
+          <p>刺激の無さ：<%= review.no_irritation %></p>
+          <p>コメント：<%= review.comment %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p>レビューはありません</p>
+    <% end %>

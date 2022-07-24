@@ -17,15 +17,17 @@
           <ul class="flex">
             <% if admin_signed_in? %>
               <li><%= link_to '会員一覧',  admin_top_path %></li>
-              <li><%= link_to 'レビュー一覧', admin_reviews_path %></li>
+
+              <li><%= link_to '商品一覧', admin_items_path %></li>
               <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
             <% elsif user_signed_in? %>
               <p>ようこそ、<%= current_user.name %>さん!</p>
               <li><%= link_to 'マイページ', mypage_path %></li>
-              <li><%= link_to '商品一覧', items_path %></li>
+              <li><%= link_to '商品検索', items_path %></li>
+              <li><%= link_to 'ランキング', ranking_path %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% else %>
-              <li><%= link_to '商品一覧', items_path %></li>
+              <li><%= link_to '商品検索', items_path %></li>
               <li><%= link_to '新規登録', new_user_registration_path %></li>
               <li><%= link_to 'ログイン', new_user_session_path %></li>
               <li><%= link_to '管理者',  new_admin_session_path %></li>

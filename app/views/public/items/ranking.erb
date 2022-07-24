@@ -1,0 +1,12 @@
+<h1>ランキング</h1>
+<% @items.each do |item| %>
+<div>
+  <%= image_tag item.get_image(200, 200) %>
+  <p><%= item.brand %></p>
+  <p><%= link_to item.name, item_path(item.id) %></p>
+  <p><%= item.genre.name %></p>
+  <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
+  <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+  <h4>総評価：<%= item.avg_reviews %></h4>
+</div>
+<% end %>
