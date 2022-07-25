@@ -1,8 +1,29 @@
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <h1>マイページ</h1>
-<p>マイネーム</p>
-<p>メールアドレス</p>
-<p>年齢</p>
-<p>性別</p>
-<p>肌質</p>
-<p>診断結果</p>
+  <div>
+    <%= link_to "編集する", edit_user_path(@user), class: "btn btn-success mt-4" %>
+  </div>
+  <p>マイネーム：<%= @user.name %></p>
+  <p>メールアドレス：<%= @user.email %></p>
+  <p>年齢：<%= @user.age_i18n %></p>
+  <p>性別：<%= @user.sex_i18n %></p>
+  <p>肌質：<%= @user.skin_type_i18n %></p>
+  <p>診断結果：<%= @user.diagnosis %></p>
+  <%= link_to "化粧品診断結果", mypage_path %>
+
+  <h4>レビュー履歴</h4>
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+        <div>
+          <p><%= link_to review.item.name, item_path(review.item_id) %></p>
+          <p>美白効果：<%= review.whitening %></p>
+          <p>シワ・たるみ改善効果：<%= review.wrinkle %></p>
+          <p>保湿効果：<%= review.moisturizing %></p>
+          <p>肌荒れ・ニキビ改善効果：<%= review.acne_cure %></p>
+          <p>刺激の無さ：<%= review.no_irritation %></p>
+          <p>コメント：<%= review.comment %></p>
+          <%= link_to "削除する", item_review_path(review.item, review), method: :delete, data: {confirm: "削除しますか？"}  %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>レビューはありません</p>
+    <% end %>

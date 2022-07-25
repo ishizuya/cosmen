@@ -24,6 +24,7 @@ ja:
     am: "午前"
     pm: "午後"
 
+ja:
   enums:
     user:
       age:
@@ -48,4 +49,3 @@ ja:
         oily: "脂性肌"
         mixed: "混合肌"
         sensitive: "敏感肌"
-

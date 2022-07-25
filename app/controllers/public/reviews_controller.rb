@@ -17,6 +17,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    flash[:success] = '削除しました'
+    redirect_to mypage_path
   end
 
   private

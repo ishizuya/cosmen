@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users#show', as: 'mypage'
     get 'users/information/edit' => 'users#edit', as: 'edit_information'
     patch 'users/information' => 'users#update', as: 'update_information'
+    patch 'users/withdraw' => 'users#withdraw', as:'withdraw'
     get 'users/diagnosis' => "users#diagnosis", as: "diagnosis"
     get 'users/result' => "users#result", as: "result"
     patch 'users/save' => "users#save", as: "save"
