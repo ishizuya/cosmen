@@ -1,2 +1,31 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<h1>ユーザー情報編集</h1>
+  <%= form_with model: @user, url:admin_user_path(@user), local:true do |f| %>
+    <p>
+      ユーザーネーム：<%= f.text_field :name,  autofocus: true %>
+    </p>
+    <p>
+      メールアドレス：<%= f.text_field :email %>
+    </p>
+    <p>
+      年齢：<%= f.select :age, User.ages.keys.map {|k| [I18n.t("enums.user.age.#{k}"), k]}%>
+    </p>
+    <p>
+      性別：<%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]} %>
+    </p>
+    <p>
+      肌質：<%= f.select :skin_type, User.skin_types.keys.map {|k| [I18n.t("enums.user.skin_type.#{k}"), k]} %>
+    </p>
+    <p>
+      肌質診断結果：<%= f.select :diagnosis, *[1..5], include_blank: "未診断" %>
+    </p>
+    <p>
+      会員ステータス：
+      <%= f.radio_button :is_deleted, "false" %>
+        <%= f.label :有効 %>
+      <%= f.radio_button :is_deleted, "true" %>
+        <%= f.label :退会 %>
+    </p>
+    <div>
+      <%= f.submit '変更を保存', class: "btn btn-success" %>
+    </div>
+  <% end %>

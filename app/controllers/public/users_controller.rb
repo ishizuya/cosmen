@@ -19,6 +19,10 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def index
+    @reviews = current_user.reviews
+  end
+
   def withdraw
     @user = current_user
     @user.update(is_deleted: true)
@@ -36,6 +40,7 @@ class Public::UsersController < ApplicationController
   def save
   end
 
+  protected
   def user_params
     params.require(:user).permit(:name, :age, :email, :sex, :skin_type, :diagnosis)
   end

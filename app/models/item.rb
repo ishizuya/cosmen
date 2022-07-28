@@ -69,4 +69,16 @@ class Item < ApplicationRecord
     end
   end
 
+  def review_sort_value
+    if avg_reviews == "未評価"
+      -1
+    else
+      avg_reviews
+    end
+  end
+
+  def self.search(keyword)
+      where(["name like? OR brand like? OR introduction like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+  end
+
 end

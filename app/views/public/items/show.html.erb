@@ -15,7 +15,21 @@
     <p>ニキビケア評価：<%= @item.avg_acne_cure %></p>
     <p>刺激の無さ評価：<%= @item.avg_no_irritation %></p>
   </div>
-
+  <div class="favorite">
+    <% if @item.favorited_by?(current_user) %>
+      <p>
+        <%= link_to item_favorites_path(@item), method: :delete do %>
+          like♥済み
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to item_favorites_path(@item), method: :post do %>
+          like♡する
+        <% end %>
+      </p>
+    <% end %>
+  </div>
   <%= link_to 'レビューをする', new_item_review_path(@item) %>
   <h4>レビュー一覧</h4>
     <% if @reviews.any? %>

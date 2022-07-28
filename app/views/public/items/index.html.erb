@@ -1,2 +1,33 @@
 <h1>商品検索</h1>
-<p>キーワード検索</p>
+<div class="search-form">
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword, :placeholder =>"例）商品名 ブランド 美白 毛穴" %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+ <% if @keywords %>
+  <div class="item-list">
+    <% if @result_items.present? %>
+      <h4 class = "seach-result">
+        <%= params[:keyword] %> の検索結果
+      </h4>
+      <% @result_items.each do |item| %>
+        <div>
+          <%= image_tag item.get_image(200, 200) %>
+          <p><%= item.brand %></p>
+          <p><%= link_to item.name, item_path(item.id) %></p>
+          <h4>総評価：<%= item.avg_reviews %></h4>
+          <p><%= item.genre.name %></p>
+          <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
+          <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <h4 class = "seach-result">
+        "<%= params[:keyword] %>" に該当する商品はありませんでした
+      </h4>
+    <% end %>
+  </div>
+<% else %>
+  <h4>キーワードを入力して検索してください</h4>
+<% end %>

@@ -20,11 +20,13 @@ Rails.application.routes.draw do
     get 'users/result' => "users#result", as: "result"
     patch 'users/save' => "users#save", as: "save"
     get 'items/ranking' => "items#ranking", as: "ranking"
+    get 'search' => 'items#search'
+    get 'reviews' => 'reviews#index', as: "reviews"
 
     resources :users,only:[:show,:edit,:update]
     resources :items,only:[:index,:show] do
       resources :reviews,only:[:new,:create,:destroy]
-      resource :favolites,only:[:create,:destroy]
+      resource :favorites,only:[:create,:destroy,:index]
     end
   end
   #devise_for :admins

@@ -14,18 +14,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :age %><br />
-    <%= f.select :age, User.ages.keys.map {|k| [I18n.t("enums.user.age.#{k}"), k]}%>
+    <%= f.label :年齢 %><br />
+    <%= f.select :age, User.ages.keys.map {|k| [I18n.t("enums.user.age.#{k}"), k]}, include_blank: "選択して下さい" %>
   </div>
 
   <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]} %>
+    <%= f.label :性別 %><br />
+    <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]}, include_blank: "選択して下さい"  %>
   </div>
 
   <div class="field">
     <%= f.label :"肌質" %><br />
-    <%= f.select :skin_type, User.skin_types.keys.map {|k| [I18n.t("enums.user.skin_type.#{k}"), k]} %>
+    <%= f.select :skin_type, User.skin_types.keys.map {|k| [I18n.t("enums.user.skin_type.#{k}"), k]}, include_blank: "選択して下さい"  %>
   </div>
 
   <div class="field">
