@@ -1,6 +1,6 @@
 class Admin::ReviewsController < ApplicationController
   def index
-    @reviews = Reviews.all
+    @reviews = Review.all
   end
 
   def show

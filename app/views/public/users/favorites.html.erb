@@ -1,0 +1,12 @@
+  <h3>お気に入り商品一覧</h3>
+  <div>
+    <% if @favorite_items.present? %>
+      <% @favorite_items.each do |favorite_item| %>
+        <div>
+          <p>・<%= link_to favorite_item.name, item_path(favorite_item.id) %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <h4>お気に入りの商品はありません</h4>
+    <% end %>
+  </div>

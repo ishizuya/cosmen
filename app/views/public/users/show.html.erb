@@ -1,6 +1,6 @@
 <h1>マイページ</h1>
   <div>
-    <%= link_to "編集する", edit_user_path(@user), class: "btn btn-success mt-4" %>
+    <%= link_to "編集する", edit_information_path(@user), class: "btn btn-success mt-4" %>
   </div>
   <p>マイネーム：<%= @user.name %></p>
   <p>メールアドレス：<%= @user.email %></p>
@@ -10,3 +10,4 @@
   <p>診断結果：<%= @user.diagnosis %></p>
   <%= link_to "化粧品診断結果", mypage_path %>
   <%= link_to "レビュー履歴一覧", reviews_path %>
+  <%= link_to "お気に入り一覧", favorites_path %>

@@ -1,9 +1,15 @@
 class Item < ApplicationRecord
   belongs_to :genre
+  # belongs_to :user, optional: true
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
   has_one_attached :image
+
+  validates :name, presence:true
+  validates :genre_id, presence:true
+
+  scope :where_genre_active, -> { joins(:genre) }
 
   def get_image(width, height)
     unless image.attached?
@@ -13,19 +19,19 @@ class Item < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
-  end
-
   def add_tax_price
     (price * 1.1).floor.to_s(:delimited)
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 
   def avg_wrinkle
     unless self.reviews.empty?
       reviews.average(:wrinkle).round(1)
     else
-      "未評価"
+      0
     end
   end
 
@@ -33,7 +39,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:whitening).round(1)
     else
-      "未評価"
+      0
     end
   end
 
@@ -41,7 +47,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:moisturizing).round(1)
     else
-      "未評価"
+      0
     end
   end
 
@@ -49,7 +55,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:acne_cure).round(1)
     else
-      "未評価"
+      0
     end
   end
 
@@ -57,7 +63,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:no_irritation).round(1)
     else
-      "未評価"
+      0
     end
   end
 

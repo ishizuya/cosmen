@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
+
   def show
     @user = current_user
-    #@reviews = Reviews.where(user_id: @user.id)
+    #@user = User.find(params[:id])
     @reviews = @user.reviews
   end
 
@@ -31,13 +32,28 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def favorites
+    favorites = Favorite.where(user_id: current_user.id).order(created_at: :desc).pluck(:item_id)
+    @favorite_items = Item.find(favorites)
+  end
+
   def diagnosis
+    @user = User.find(current_user.id)
   end
 
   def result
+    @user = User.find(current_user.id)
   end
 
   def save
+    @user = User.find(current_user.id)
+    params[:user][:diagnosis] ? @user.diagnosis = params[:user][:diagnosis].join("") : false
+    if @user.update(user_params)
+      flash[:notice] = "診断が完了しました"
+      redirect_to result_path(@user.id)
+    else
+      redirect_to :action => "diagnosis"
+    end
   end
 
   protected

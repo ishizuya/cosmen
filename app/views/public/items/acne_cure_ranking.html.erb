@@ -1,4 +1,4 @@
-<h1>ランキング</h1>
+<h1>肌荒れ・ニキビ改善ランキング</h1>
 	<div class="sidebar">
 	  <%= link_to "総合", ranking_path %>
 		<h4>カテゴリー別</h4>
@@ -20,7 +20,7 @@
         <%= image_tag item.get_image(200, 200) %>
         <p><%= item.brand %></p>
         <p><%= link_to item.name, item_path(item.id) %></p>
-        <h4>総評価：<%= item.avg_reviews %></h4>
+        <h4>肌荒れ・ニキビ評価：<%= item.avg_acne_cure %></h4>
         <p><%= item.genre.name %></p>
         <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
         <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
@@ -34,7 +34,7 @@
         <%= image_tag item.get_image(200, 200) %>
         <p><%= item.brand %></p>
         <p><%= link_to item.name, item_path(item.id) %></p>
-        <h4>総評価：<%= item.avg_reviews %></h4>
+        <h4>肌荒れ・ニキビ評価：<%= item.avg_acne_cure %></h4>
         <p><%= item.genre.name %></p>
         <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
         <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>

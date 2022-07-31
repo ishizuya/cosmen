@@ -1,33 +1,96 @@
 class Public::ItemsController < ApplicationController
-  def index
-    @items = Item.all
-  end
 
   def show
-    @item = Item.find(params[:id])
+    @item = Item.where_genre_active.find(params[:id])
+    @genres = Genre.all
     @reviews = Review.where(item_id: @item.id)
+    @favorites = Favorite.where(item_id: @item.id)
   end
 
   def ranking
-    #@reviews = Review.all
-    @items = Item.all.sort_by{|item| item.review_sort_value*-1 }
-    #@items = Item.joins(:reviews).group(:item_id).order('count(whitening + wrinkle + moisturizing + acne_cure + no_irritation) desc')
-    #@items = Item.left_joins(:reviews).distinct.sort_by(item.review.avg_reviews)
-    #@itmes = Item.joins(:reviews).group(:item_id).order(wrinkle: :desc)
+    @genres = Genre.all
+    @all_ranks = Item.all.sort_by{|item| item.review_sort_value*-1 }
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+    end
+  end
+
+  def whitening_ranking
+    @genres = Genre.all
+    @all_ranks = Item.all.sort_by{|item| item.avg_whitening*-1 }
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+    end
+  end
+
+  def wrinkle_ranking
+    @genres = Genre.all
+    @all_ranks = Item.all.sort_by{|item| item.avg_wrinkle*-1 }
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+    end
+  end
+
+  def moisturizing_ranking
+    @genres = Genre.all
+    @all_ranks = Item.all.sort_by{|item| item.avg_moisturizing*-1 }
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+    end
+  end
+
+  def acne_cure_ranking
+    @genres = Genre.all
+    @all_ranks = Item.all.sort_by{|item| item.avg_acne_cure*-1 }
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+    end
+  end
+
+  def irritation_ranking
+    @genres = Genre.all
+    @all_ranks = Item.all.sort_by{|item| item.avg_no_irritation*-1 }
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+    end
+  end
+
+  def index
+    @genres = Genre.all
+    @items = Item.all
   end
 
   def search
+    @genres = Genre.all
     @items = Item.all
-    @keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
-    @keywords.each_with_index do |keyword, i|
-      @result_items = Item.search(keyword) if i == 0
-      @result_items = @result_items.merge(@result_items.search(keyword))
+    # .page(params[:page]).per(12)
+    if params[:keyword].present?
+      @keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
+      @keywords.each_with_index do |keyword, i|
+        # @items = @items.search(keyword) if i == 0
+        @items = @items.merge(@items.search(keyword))
+      end
+      if params[:genre_id].present?
+        @genre = Genre.find(params[:genre_id])
+        @items = @items.select{ |item| item.genre_id == @genre.id }
+      end
+    else
+      if params[:genre_id].present?
+        @genre = Genre.find(params[:genre_id])
+        @items = @items.select{ |item| item.genre_id == @genre.id }
+      end
     end
     render "index"
   end
 
   protected
   def item_params
-    params.require(:item).permit(:keyword)
+    params.require(:item).permit(:keyword, :genre_id)
   end
 end

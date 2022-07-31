@@ -1,2 +1,67 @@
-<h1>Public::Users#diagnosis</h1>
-<p>Find me in app/views/public/users/diagnosis.html.erb</p>
+<h1>化粧品診断</h1>
+  <p>4つの質問から、あなたにおススメの化粧品と成分を提案します！！</p>
+    <%= form_with model: @user, url:save_path, local:true do |f| %>
+      <div>
+        <div>
+          <div>
+            <p>Question1. あなたの年齢は？</p>
+          </div>
+          <div class="col-6">
+            <p><%= f.check_box :diagnosis, {multiple: true}, "1", nil %>～20歳</p>
+          </div>
+          <div class="col-6">
+            <p><%= f.check_box :diagnosis, {multiple: true}, "2", nil %>21～30歳</p>
+          </div>
+          <div class="col-6">
+            <p><%= f.check_box :diagnosis, {multiple: true}, "3", nil %>31～40歳</p>
+          </div>
+          <div class="col-6">
+            <p><%= f.check_box :diagnosis, {multiple: true}, "4", nil %>41～50歳</p>
+          </div>
+          <div class="col-6">
+            <p><%= f.check_box :diagnosis, {multiple: true}, "5", nil %>51歳～</p>
+          </div>
+
+          <div class="col-12">
+              <p>Question2. あなたの肌質は？</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "1", nil %>普通肌</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "2", nil %>乾燥肌</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "3", nil %>脂性肌</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "4", nil %>混合肌</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "5", nil %>敏感肌</p>
+          </div>
+
+          <div class="col-12">
+              <p>Question3. あなたの肌悩みは？</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "1", nil %>乾燥が気になる</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "2", nil %>肌荒れ・ニキビが気になる</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "3", nil %>シミ・くすみが気になる</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "4", nil %>しわ・たるみが気になる</p>
+          </div>
+          <div class="col-6">
+              <p><%= f.check_box :diagnosis, {multiple: true}, "2", nil %>化粧品で刺激を感じやすい</p>
+          </div>
+      </div>
+  </div>
+  <div class="sindanbotan">
+      <%= f.submit "診断する" %>
+  </div>
+<% end %>
