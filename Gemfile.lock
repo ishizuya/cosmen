@@ -64,11 +64,11 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
-    bootsnap (1.12.0)
+    bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
-    capybara (3.36.0)
+    capybara (3.37.1)
       addressable
       matrix
       mini_mime (>= 0.1.3)
@@ -119,9 +119,9 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.16.2)
-    msgpack (1.5.3)
+    msgpack (1.5.4)
     nio4r (2.5.8)
-    nokogiri (1.13.7)
+    nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -184,12 +184,13 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.1.0)
+    selenium-webdriver (4.3.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     semantic_range (3.0.0)
-    spring (3.1.1)
+    spring (4.0.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -199,11 +200,11 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.4)
     thor (1.2.1)
-    tilt (2.0.10)
+    tilt (2.0.11)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -221,6 +222,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -255,7 +257,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 3.1.2p20
 
 BUNDLED WITH
-   1.17.3
+   2.3.7

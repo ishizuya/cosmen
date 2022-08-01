@@ -16,11 +16,15 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def index
+    @reviews = Review.where(user_id: current_user.id).order(created_at: :desc)
+  end
+
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
     flash[:success] = '削除しました'
-    redirect_to mypage_path
+    redirect_to reviews_path
   end
 
   private
