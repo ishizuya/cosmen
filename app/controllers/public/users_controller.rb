@@ -43,14 +43,38 @@ class Public::UsersController < ApplicationController
 
   def result
     @user = User.find(current_user.id)
+    if @user.diagnosis == "1"
+      @items = Item.all.sort_by{|item| item.avg_moisturizing*-1 }.first(5)
+    elsif @user.diagnosis == "2"
+      @items = Item.all.sort_by{|item| item.avg_whitening*-1 }.first(5)
+    elsif @user.diagnosis == "3"
+      @items = Item.all.sort_by{|item| item.avg_wrinkle*-1 }.first(5)
+    elsif @user.diagnosis == "4"
+      @items = Item.all.sort_by{|item| item.avg_acne_cure*-1 }.first(5)
+    else
+      @items = Item.all.sort_by{|item| item.avg_no_irritation*-1 }.first(5)
+    end
   end
+
 
   def save
     @user = User.find(current_user.id)
-    params[:user][:diagnosis] ? @user.diagnosis = params[:user][:diagnosis].join("") : false
+    input = [params[:user][:question1],params[:user][:question2], params[:user][:question3], params[:user][:question4], params[:user][:question5]].join
+    p input
+    if input == "12222" or input == "11112" or input == "12112" or input == "11212" or input == "11122" or input == "12212" or input == "12122" or input == "11222" or input == "22222"
+       @user.diagnosis = "1"
+    elsif input ==  "21222"
+       @user.diagnosis = "2"
+    elsif input ==  "22122" or input == "21122"
+      @user.diagnosis = "3"
+    elsif input ==  "22212" or input == "21112" or input == "22112" or input == "21212"
+      @user.diagnosis = "4"
+    else
+      @user.diagnosis = "5"
+    end
     if @user.update(user_params)
       flash[:notice] = "診断が完了しました"
-      redirect_to result_path(@user.id)
+      redirect_to result_path
     else
       redirect_to :action => "diagnosis"
     end
