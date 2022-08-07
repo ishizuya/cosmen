@@ -1,10 +1,11 @@
-<h1>商品検索</h1>
-
+<div class="title">
+  <h2>商品検索</h2>
+</div>
 <div class="search-form">
   <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword, :placeholder =>"例）商品名 ブランド 美白 毛穴" %>
-    <%= select_tag "genre_id", options_from_collection_for_select(Genre.all, :id, :name), include_blank: "全部" %>
-  <%= f.submit "検索" %>
+    <%= f.text_field :keyword, value: @keyword, :placeholder =>"例）商品名 ブランド 美白 毛穴", size: 40, class: "search_field" %>
+    <%= select_tag "genre_id", options_from_collection_for_select(Genre.all, :id, :name), include_blank: "全カテゴリー", class: "search_field" %>
+    <%= f.submit "検索", class: "search_btn" %>
   <% end %>
 </div>
 
@@ -19,14 +20,17 @@
         <% end %>
       </h4>
       <% @items.each do |item| %>
-        <div>
-          <%= image_tag item.get_image(200, 200) %>
-          <p><%= item.brand %></p>
-          <p><%= link_to item.name, item_path(item.id) %></p>
-          <h4>総評価：<%= item.avg_reviews %></h4>
-          <p><%= item.genre.name %></p>
-          <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-          <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+        <div class="item">
+          <div class="item-image">
+            <%= image_tag item.get_image(200, 200) %>
+          </div>
+          <div class="item-info">
+            <p><%= item.brand %></p>
+            <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
+            <p>総評価：<%= item.avg_reviews %></p>
+            <p>カテゴリー：<%= item.genre.name %></p>
+            <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+          </div>
         </div>
       <% end %>
     <% else %>
@@ -37,14 +41,17 @@
   </div>
 <% else %>
   <% @items.each do |item| %>
-    <div>
-      <%= image_tag item.get_image(200, 200) %>
-      <p><%= item.brand %></p>
-      <p><%= link_to item.name, item_path(item.id) %></p>
-      <h4>総評価：<%= item.avg_reviews %></h4>
-      <p><%= item.genre.name %></p>
-      <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-      <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+    <div class="item">
+      <div class="item-image">
+        <%= image_tag item.get_image(200, 200) %>
+      </div>
+      <div class="item-info">
+        <p><%= item.brand %></p>
+        <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
+        <p>総評価：<%= item.avg_reviews %></p>
+        <p>カテゴリー：<%= item.genre.name %></p>
+        <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+      </div>
     </div>
   <% end %>
 <% end %>

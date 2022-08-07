@@ -5,42 +5,45 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header class="<%= (admin_signed_in? ? "admin_header" : "" ) %>">
-      <div class="header-content">
-        <%= link_to 'COSMEN', (admin_signed_in? ? admin_top_path : root_path ), class: "logo" %>
-          <ul class="flex">
-            <% if admin_signed_in? %>
-              <li><%= link_to '会員一覧',  admin_top_path %></li>
-              <li><%= link_to '商品一覧', admin_items_path %></li>
-              <li><%= link_to 'レビュー一覧', admin_reviews_path %></li>
-              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-            <% elsif user_signed_in? %>
-              <p>ようこそ、<%= current_user.name %>さん!</p>
-              <li><%= link_to 'マイページ', mypage_path %></li>
-              <li><%= link_to '商品検索', items_path %></li>
-              <li><%= link_to 'ランキング', ranking_path %></li>
-              <li><%= link_to '化粧品診断', diagnosis_path %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-            <% else %>
-              <li><%= link_to '商品検索', items_path %></li>
-              <li><%= link_to '新規登録', new_user_registration_path %></li>
-              <li><%= link_to 'ログイン', new_user_session_path %></li>
-              <li><%= link_to '管理者',  new_admin_session_path %></li>
-            <% end %>
-          </ul>
-      </div>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm bg-dark text-white pt-1 pb-1">
+      <nav>
+        <a class="navbar-brand ml-5" href="/"><%= image_tag 'COSMEN.png', size: '110x110' %></a>
+          <div class="float-right mt-4 mr-5">
+            <ul>
+              <% if admin_signed_in? %>
+                <li class="btn-flat-border"><%= link_to '会員一覧', admin_top_path, class: "btn" %></li>
+                <li class="btn-flat-border"><%= link_to '商品一覧', admin_items_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to 'レビュー一覧', admin_reviews_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn" %></li>
+                <% elsif user_signed_in? %>
+                  <p>ようこそ、<%= current_user.name %>さん!</p>
+                  <li class="btn-flat-border"><%= link_to 'マイページ', mypage_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to '商品検索', items_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to 'ランキング', ranking_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to '化粧品診断', diagnosis_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn" %></li>
+                <% else %>
+                  <li class="btn-flat-border"><%= link_to '商品検索', items_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to '新規登録', new_user_registration_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to 'ログイン', new_user_session_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to '管理者',  new_admin_session_path, class: "btn" %></li>
+                <% end %>
+              </ul>
+            </div>
+      </nav>
     </header>
-    <main>
+    <main class="mb-auto">
       <%= yield %>
     </main>
-    <footer>
-      Copyright © Infratop Inc. All Rights Reserved.
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <h6 class="mt-2 mb-3 text-center">Copyright © cosmen Co.,Ltd. All Rights Reserved.</h6>
     </footer>
   </body>
 </html>

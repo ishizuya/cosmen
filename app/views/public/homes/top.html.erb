@@ -1,9 +1,26 @@
-<h1>新着商品</h1>
-<h4>ようこそ、COSMENへ！<br>このサイトは、男性用の化粧品のレビューサイトです。<br>化粧品診断から自分に合った化粧品を提案します。</h4>
-
-<p>テスト</p>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("p").text("成功！！");
-  });
-</script>
+<div class="top-image">
+  <div class="top-introduction">
+  <span class="introduction_title">メンズ用化粧品レビューサイト「COSMEN」</span>
+  <p>
+    忙しい朝や一日の終わり、化粧品はあなたに潤いと癒しを与えます。<br>
+    なにげない毎日のシーンに、化粧品を届けたい。<br>
+  </p>
+  </div>
+</div>
+<div class="title">
+  <h2>NEW ITEMS</h2>
+</div>
+<% @items.each do |item| %>
+  <div class="item">
+    <div class="item-image">
+      <%= image_tag item.get_image(200, 200) %>
+    </div>
+    <div class="item-info">
+      <p><%= item.brand %></p>
+      <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
+      <p>総評価：<%= item.avg_reviews %></p>
+      <p>カテゴリー：<%= item.genre.name %></p>
+      <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+    </div>
+  </div>
+<% end %>

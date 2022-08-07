@@ -1,26 +1,27 @@
-<h2>Log in</h2>
-
-<%= form_with model: @user, url: user_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="title">
+  <h2>ログイン</h2>
+</div>
+<div class="introduction">
+  <p>
+    <span class="introduction_title">メンズ用化粧品レビューサイト「COSMEN」</span><br>
+    登録料・年会費無料のCOSMENの会員サイトです。<br>
+    COSMENに登録することで、化粧品の評価ランキングを見ることができ、<br>
+    あなたに合った化粧品や成分を提案する化粧品診断をすることができます。<br>
+    この機会に、ぜひご登録をお願いします。
+  </p>
+</div>
+<div class="login_form mt-5 p-3">
+  <h5>メールアドレスでログイン</h5>
+  <%= form_with model: @user, url: user_session_path do |f| %>
+    <div class="field m-2">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: 60 %>
+    </div>
+    <div class="field m-2">
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: 60 %>
+    </div>
+    <div class="actions m-2">
+      <%= f.submit "ログイン", class: 'btn-block btn-dark btn-lg' %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
+  <%= render "public/shared/links" %>

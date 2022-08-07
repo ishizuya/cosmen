@@ -1,14 +1,19 @@
-<h1>商品詳細</h1>
-  <%= image_tag @item.get_image(200, 200) %>
-  <p>ブランド：<%= @item.brand %></p>
-  <p>商品名：<%= @item.name %></p>
-  <p>ジャンル：<%= @item.genre.name %></p>
-  <p>税込価格(税抜価格)：<%= @item.add_tax_price %>(<%= @item.price.to_s(:delimited) %>)円</p>
-  <p>容量：<%= @item.capacity %></p>
-  <p>商品説明：<%= @item.introduction %></p>
+<div class="title">
+  <h2><span class="show-brand"><%= @item.brand %></span>　<%= @item.name %></h2>
+</div>
+<div class="item-show">
+  <div class="item-image">
+    <%= image_tag @item.get_image(200, 200) %>
+  </div>
+  <div class="item-info">
+      <p>口コミ総評価：<span class="total-rating-value"><%= @item.avg_reviews %></span></p>
+      <p>ジャンル：<%= @item.genre.name %></p>
+      <p>税込価格(税抜価格)：<%= @item.add_tax_price %>(<%= @item.price.to_s(:delimited) %>)／<%= @item.capacity %> | 発売日：<%= @item.release_date.strftime('%Y/%m/%d') %></p>
+      <p><%= @item.introduction %></p>
+     </div>
+   </div>
+ <div>
 
-  <div>
-    <h4>総評価：<%= @item.avg_reviews %></h4>
     <p>シワ評価：<%= @item.avg_wrinkle %></p>
     <p>美白評価：<%= @item.avg_whitening %></p>
     <p>保湿評価：<%= @item.avg_moisturizing %></p>
@@ -16,11 +21,14 @@
     <p>刺激の無さ評価：<%= @item.avg_no_irritation %></p>
   </div>
 
+<% if user_signed_in? %>
   <div id="favorite-btn-<%= @item.id %>">
     <%= render 'public/favorites/favorite', item: @item %>
   </div>
-
+<% end %>
+<% if user_signed_in? %>
   <%= link_to 'レビューをする', new_item_review_path(@item) %>
+<% end %>
   <h4>レビュー一覧</h4>
     <% if @reviews.any? %>
       <% @reviews.each do |review| %>
