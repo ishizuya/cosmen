@@ -12,15 +12,18 @@
       <p><%= @item.introduction %></p>
      </div>
    </div>
- <div>
-
+<div class="rate">
+  <div class="chart">
+    <%= render 'chart', item: @item %>
+  </div>
+  <div>
     <p>シワ評価：<%= @item.avg_wrinkle %></p>
     <p>美白評価：<%= @item.avg_whitening %></p>
     <p>保湿評価：<%= @item.avg_moisturizing %></p>
     <p>ニキビケア評価：<%= @item.avg_acne_cure %></p>
     <p>刺激の無さ評価：<%= @item.avg_no_irritation %></p>
   </div>
-
+</div>
 <% if user_signed_in? %>
   <div id="favorite-btn-<%= @item.id %>">
     <%= render 'public/favorites/favorite', item: @item %>

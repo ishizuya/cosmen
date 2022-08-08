@@ -1,0 +1,34 @@
+<canvas id="myChart" width="300" height="300"></canvas>
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ["保湿", "美白", "シワ", "ニキビ", "安全性"],
+    datasets:
+    [
+        {
+        label: 'レビュー評価',
+        backgroundColor: 'rgba(67, 133, 215, 0.5)',
+        borderColor: "rgba(67, 133, 215, 1)",
+        data: [<%= item.avg_moisturizing %>, <%= item.avg_whitening %>, <%= item.avg_wrinkle %>, <%= item.avg_acne_cure %>, <%= item.avg_no_irritation %>],
+        borderWidth: 3
+        }
+    ]
+  },
+  options: {
+    responsive: false,
+    scale: {
+      pointLabels: {
+        fontColor: 'black',
+        fontSize: 15
+      },
+      ticks: {
+        suggestedMin: 0,
+        suggestedMax: 5,
+        stepSize: 1
+      }
+    }
+  }
+});
+</script>
