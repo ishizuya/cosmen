@@ -1,51 +1,23 @@
 <div class="all-view">
-  <h1>ランキング</h1>
-	<div class="sidebar">
-	  <div class="actions">
-	    <%= link_to "総合", ranking_path, class: "btn btn-secondary btn-sm" %>
-		</div>
-		<h4>カテゴリー別</h4>
-		<% @genres.each do |genre| %>
-			<div class="actions">
-			  <%= link_to genre.name, ranking_path(genre_id: genre.id), class: "btn btn-secondary btn-sm" %>
-		  </div>
-		<% end %>
-		<h4>悩み別</h4>
-		<div class="actions">
-  		<%= link_to "美白", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "シワ", wrinkle_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "肌荒れ", acne_cure_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "乾燥", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
-  	</div>
+  <div class="title">
+    <h2>総評価ランキング</h2>
+  </div>
+<div class="sidebar">
+  <h4>カテゴリー別</h4>
+  <div class="actions">
+    <%= link_to "全カテゴリー", ranking_path, class: "btn btn-secondary btn-sm" %>
+	  <% @genres.each do |genre| %>
+		  <%= link_to genre.name, ranking_path(genre_id: genre.id), class: "btn btn-secondary btn-sm" %>
+	  <% end %>
 	</div>
-	<% if params[:genre_id] %>
-    <% @genre_ranks.each.with_index(1) do |item, i| %>
-      <h2><%= @genre.name %> のランキング</h2>
-      <div>
-        <h4>第<%= i %>位</h4>
-        <%= image_tag item.get_image(200, 200) %>
-        <p><%= item.brand %></p>
-        <p><%= link_to item.name, item_path(item.id) %></p>
-        <h4>総評価：<%= item.avg_reviews %></h4>
-        <p><%= item.genre.name %></p>
-        <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-        <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
-      </div>
-    <% end %>
-  <% else %>
-    <h2>総合ランキング</h2>
-    <% @all_ranks.each.with_index(1) do |item, i| %>
-      <div>
-        <h4>第<%= i %>位</h4>
-        <%= image_tag item.get_image(200, 200) %>
-        <p><%= item.brand %></p>
-        <p><%= link_to item.name, item_path(item.id) %></p>
-        <h4>総評価：<%= item.avg_reviews %></h4>
-        <p><%= item.genre.name %></p>
-        <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-        <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
-      </div>
-    <% end %>
-  <% end %>
+	<h4>お悩み別</h4>
+	<div class="actions">
+		<%= link_to "美白", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "シワ", wrinkle_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "肌荒れ", acne_cure_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "乾燥", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
+	</div>
+</div>
+  <%= render 'rank-items', item: @item, genre_ranks: @genre_ranks, all_ranks: @all_ranks, genre: @genre %>
 </div>

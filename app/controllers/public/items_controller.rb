@@ -19,7 +19,7 @@ class Public::ItemsController < ApplicationController
 
   def whitening_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.avg_whitening*-1 }
+    @all_ranks = Item.all.sort_by{|item| item.whitening_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
@@ -28,7 +28,7 @@ class Public::ItemsController < ApplicationController
 
   def wrinkle_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.avg_wrinkle*-1 }
+    @all_ranks = Item.all.sort_by{|item| item.wrinkle_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
@@ -37,7 +37,7 @@ class Public::ItemsController < ApplicationController
 
   def moisturizing_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.avg_moisturizing*-1 }
+    @all_ranks = Item.all.sort_by{|item| item.moisturizing_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
@@ -46,7 +46,7 @@ class Public::ItemsController < ApplicationController
 
   def acne_cure_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.avg_acne_cure*-1 }
+    @all_ranks = Item.all.sort_by{|item| item.acne_cure_*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
@@ -55,7 +55,7 @@ class Public::ItemsController < ApplicationController
 
   def irritation_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.avg_no_irritation*-1 }
+    @all_ranks = Item.all.sort_by{|item| item.no_irritation_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }

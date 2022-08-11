@@ -1,11 +1,11 @@
-<div class='star-btn' id="favorite_<%= item.id %>">
+<div class='favorite-btn' id="favorite_<%= item.id %>">
   <% if !@item.favorited_by?(current_user) %>
     <%= link_to item_favorites_path(item), method: :post, remote: true, id: :"favorite-button-#{item.id}" do %>
-      <p>お気に入り登録する</p>
+      <i class="fa-regular fa-thumbs-up fa-2x">LIKE</i>
     <% end %>
   <% else %>
     <%= link_to item_favorites_path(item), method: :delete, remote: true, id: :"favorite-button-#{item.id}" do %>
-      <p>お気に入り登録解除</p>
+      <i class="fa-solid fa-thumbs-up fa-2x">LIKE</i>
     <% end %>
   <% end %>
 </div>

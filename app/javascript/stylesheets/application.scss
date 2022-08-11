@@ -30,12 +30,6 @@
   margin-bottom: 5px;
 }
 
-h2 {
-  border-bottom: solid 3px black;
-  display: inline-block;
-  margin: 1em;
-}
-
 .introduction{
   border: solid 2px ;
   border-radius: 8px;
@@ -49,7 +43,7 @@ h2 {
   margin: 0 auto;
 }
 
-.login_form {
+.form {
   margin: 0 auto;
   background-color: #f5f5f5;
   width: 50%;
@@ -58,13 +52,49 @@ h2 {
   margin-top: 10px;
 }
 
+textarea {
+  width: 90%;
+  height: 100px;
+}
+
 .field {
   width: 100%;
   margin: 8px;
 }
 
-.title {
+select {
   text-align: center;
+}
+
+
+span {
+  font-size: 0.8em;
+}
+
+.all-view{
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.title {
+  display: inline-box;
+  text-align: center;
+  // margin: 1em;
+}
+
+h2 {
+  border-bottom: solid 3px black;
+  margin: 1em;
+  display: inline-block;
+}
+
+.subtitle {
+  text-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  margin: 1.5em;
 }
 
 .top-image {
@@ -90,16 +120,29 @@ h2 {
   color: #191970 ;
   font-weight: bold;
   margin: 0 auto;
-  width: 80%;
   margin-bottom: 10px;
+  padding: 1em;
+  // justify-content: center;
 }
 
 .item-image{
   padding: 2px;
+  margin: 5px;
 }
 
 .item-info{
   padding: 5px;
+}
+
+.review-item{
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rank-image {
+  flex-flow: column;
 }
 
 .search-form {
@@ -157,6 +200,7 @@ h2 {
   margin-bottom: 5px;
   color: #191970 ;
   font-weight: bold;
+  padding: 1em;
 }
 
 myChart {
@@ -164,21 +208,6 @@ myChart {
 //   height: 50px;
 //   margin: 5px;
  }
-
-.all-view{
-  width: 70%;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  margin-top: 10px;
-}
-
-.subtitle {
-  color:  #191970;
-  text-weight: bold;
-  margin: 0 auto;
-  border-bottom: medium solid #191970;
-  display: inline;
-}
 
 .rate {
   display: flex;
@@ -228,4 +257,14 @@ td {
 
 .mypage {
   text-align: center;
+}
+
+.icon {
+  display: flex;
+  margin-left: 10px;
+}
+
+.item-introduction {
+  display: flex;
+  flex-direction: column;
 }

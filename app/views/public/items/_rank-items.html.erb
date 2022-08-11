@@ -1,29 +1,8 @@
-<div class="all-view">
-  <div class="title">
-    <h2>保湿ランキング</h2>
-  </div>
-  <div class="sidebar">
-		<h4>カテゴリー別</h4>
-		<div class="actions">
-	    <%= link_to "全カテゴリー", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
-		  <% @genres.each do |genre| %>
-			  <%= link_to genre.name, moisturizing_ranking_path(genre_id: genre.id), class: "btn btn-secondary btn-sm" %>
-		  <% end %>
-		</div>
-		<h4>お悩み別</h4>
-		<div class="actions">
-  		<%= link_to "美白", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "シワ", wrinkle_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "肌荒れ", acne_cure_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "乾燥", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
-  	</div>
-  </div>
-    	<% if params[:genre_id] %>
+  	<% if params[:genre_id] %>
   	  <div class="subtitle">
-        <h3>「<%= @genre.name %>」ランキング</h3>
+        <h3>「<%= genre.name %>」ランキング</h3>
       </div>
-      <% @genre_ranks.each.with_index(1) do |item, i| %>
+      <% genre_ranks.each.with_index(1) do |item, i| %>
         <div class="item">
           <div class="rank-image">
             <h4>第<%= i %>位</h4>
@@ -34,7 +13,7 @@
           <div class="item-info">
             <p><%= item.brand %></p>
             <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-            <p>保湿評価：<%= item.avg_moisturizing %></p>
+            <p>総評価：<%= item.avg_reviews %></p>
             <p>カテゴリー：<%= item.genre.name %></p>
             <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
           </div>
@@ -44,7 +23,7 @@
     <div class="subtitle">
       <h3>全カテゴリーランキング</h3>
     </div>
-      <% @all_ranks.each.with_index(1) do |item, i| %>
+      <% all_ranks.each.with_index(1) do |item, i| %>
         <div class="item">
           <div class="rank-image">
             <h4>第<%= i %>位</h4>
@@ -55,7 +34,7 @@
           <div class="item-info">
             <p><%= item.brand %></p>
             <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-            <p>保湿評価：<%= item.avg_moisturizing %></p>
+            <p>総評価：<%= item.avg_reviews %></p>
             <p>カテゴリー：<%= item.genre.name %></p>
             <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
           </div>

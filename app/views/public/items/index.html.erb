@@ -35,12 +35,13 @@
           </div>
         <% end %>
       <% else %>
-        <h4 class = "text-center">
+        <h5 class= "text-center">
           "<%= params[:keyword] %>" に該当する商品はありませんでした
         </h4>
       <% end %>
     </div>
-  <% else %>
+  <% elsif params[:genre_id].present? %>
+    <h5 class="text-center">"<%= @genre.name %>" の検索結果</h5>
     <% @items.each do |item| %>
       <div class="item">
         <div class="item-image">
@@ -48,7 +49,7 @@
         </div>
         <div class="item-info">
           <p><%= item.brand %></p>
-          <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
+          <h5><%= link_to item.name, item_path(item.id), class: "item-name" %></h5>
           <p>総評価：<%= item.avg_reviews %></p>
           <p>カテゴリー：<%= item.genre.name %></p>
           <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>

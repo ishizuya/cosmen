@@ -31,7 +31,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:wrinkle).round(1)
     else
-      0
+      "未評価"
     end
   end
 
@@ -39,7 +39,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:whitening).round(1)
     else
-      0
+      "未評価"
     end
   end
 
@@ -47,7 +47,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:moisturizing).round(1)
     else
-      0
+      "未評価"
     end
   end
 
@@ -55,7 +55,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:acne_cure).round(1)
     else
-      0
+      "未評価"
     end
   end
 
@@ -63,7 +63,7 @@ class Item < ApplicationRecord
     unless self.reviews.empty?
       reviews.average(:no_irritation).round(1)
     else
-      0
+      "未評価"
     end
   end
 
@@ -82,6 +82,47 @@ class Item < ApplicationRecord
       avg_reviews
     end
   end
+
+  def whitening_sort_value
+    if avg_whitening == "未評価"
+      -1
+    else
+      avg_whitening
+    end
+  end
+
+  def wrinkle_sort_value
+    if avg_wrinkle == "未評価"
+      -1
+    else
+      avg_wrinkle
+    end
+  end
+
+  def moisturizing_sort_value
+    if avg_moisturizing == "未評価"
+      -1
+    else
+      avg_moisturizing
+    end
+  end
+
+  def acne_cure_sort_value
+    if avg_acne_cure == "未評価"
+      -1
+    else
+      avg_acne_cure
+    end
+  end
+
+  def no_irritation_sort_value
+    if avg_no_irritation == "未評価"
+      -1
+    else
+      avg_no_irritation
+    end
+  end
+
 
   def self.search(keyword)
       where(["name like? OR brand like? OR introduction like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])

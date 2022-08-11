@@ -1,12 +1,25 @@
-  <h3>お気に入り商品一覧</h3>
+<div class="all-view">
+  <div class="title">
+    <h2>お気に入り商品一覧</h2>
+  </div>
   <div>
     <% if @favorite_items.present? %>
       <% @favorite_items.each do |favorite_item| %>
-        <div>
-          <p>・<%= link_to favorite_item.name, item_path(favorite_item.id) %></p>
+       <div class="item">
+          <div class="item-image">
+            <%= image_tag favorite_item.get_image(200, 200) %>
+          </div>
+          <div class="item-info">
+            <p><%= favorite_item.brand %></p>
+            <h5><%= link_to favorite_item.name, item_path(favorite_item.id),class: "item-name" %></h5>
+            <p>総評価：<%= favorite_item.avg_reviews %></p>
+            <p>カテゴリー：<%= favorite_item.genre.name %></p>
+            <p>参考価格：<%= favorite_item.price %>円／<%= favorite_item.capacity %> | 発売日：<%= favorite_item.release_date.strftime('%Y/%m/%d') %></p>
+          </div>
         </div>
       <% end %>
     <% else %>
       <h4>お気に入りの商品はありません</h4>
     <% end %>
   </div>
+</div>

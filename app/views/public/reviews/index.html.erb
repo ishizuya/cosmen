@@ -1,6 +1,7 @@
-<h2>レビュー履歴一覧</h2>
- <% if @reviews.present? %>
-    <h4>投稿数：<%= @reviews.count %></h4>
+<div class="all-view">
+  <h2>レビュー履歴一覧</h2>
+    <% if @reviews.present? %>
+      <h4>投稿数：<%= @reviews.count %></h4>
       <% @reviews.each do |review| %>
         <div>
           <p><%= review.item.brand %>　<%= link_to review.item.name, item_path(review.item_id) %></p>
@@ -17,3 +18,4 @@
     <% else %>
       <p>レビューはありません</p>
     <% end %>
+</div>
