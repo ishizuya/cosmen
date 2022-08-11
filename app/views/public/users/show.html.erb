@@ -1,13 +1,25 @@
-<h1>マイページ</h1>
-  <div>
-    <%= link_to "編集する", edit_information_path(@user), class: "btn btn-success mt-4" %>
+<div class="all-view">
+  <div class="title">
+    <h2>マイページ</h2>
   </div>
-  <p>マイネーム：<%= @user.name %></p>
-  <p>メールアドレス：<%= @user.email %></p>
-  <p>年齢：<%= @user.age_i18n %></p>
-  <p>性別：<%= @user.sex_i18n %></p>
-  <p>肌質：<%= @user.skin_type_i18n %></p>
-  <p>診断結果：<%= @user.diagnosis %></p>
-  <%= link_to "化粧品診断結果", result_path %>
-  <%= link_to "レビュー履歴一覧", reviews_path %>
-  <%= link_to "お気に入り一覧", favorites_path %>
+  <div class="mypage">
+    <p>マイネーム：<%= @user.name %></p>
+    <p>メールアドレス：<%= @user.email %></p>
+    <p>年齢：<%= @user.age_i18n %></p>
+    <p>性別：<%= @user.sex_i18n %></p>
+    <p>肌質：<%= @user.skin_type_i18n %></p>
+    <p>診断結果：<%= @user.diagnosis %></p>
+    <div class="actions">
+      <%= link_to "化粧品診断結果", result_path, class: "btn-block btn-dark btn-lg" %>
+    </div>
+    <div class="actions">
+      <%= link_to "レビュー履歴一覧", reviews_path, class: "btn-block btn-dark btn-lg" %>
+    </div>
+    <div class="actions">
+      <%= link_to "お気に入り一覧", favorites_path, class: "btn-block btn-dark btn-lg" %>
+    </div><br>
+    <div class="actions">
+      <%= link_to "編集する", edit_information_path(@user), class: "btn-block btn-dark btn-lg" %>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,23 @@
-<h1>ランキング</h1>
+<div class="all-view">
+  <h1>ランキング</h1>
 	<div class="sidebar">
-	  <%= link_to "総合", ranking_path %>
+	  <div class="actions">
+	    <%= link_to "総合", ranking_path, class: "btn btn-secondary btn-sm" %>
+		</div>
 		<h4>カテゴリー別</h4>
 		<% @genres.each do |genre| %>
-			<%= link_to genre.name, ranking_path(genre_id: genre.id) %>
+			<div class="actions">
+			  <%= link_to genre.name, ranking_path(genre_id: genre.id), class: "btn btn-secondary btn-sm" %>
+		  </div>
 		<% end %>
 		<h4>悩み別</h4>
-		<%= link_to "美白", whitening_ranking_path %>
-		<%= link_to "シワ", wrinkle_ranking_path %>
-		<%= link_to "肌荒れ", acne_cure_ranking_path %>
-		<%= link_to "乾燥", moisturizing_ranking_path %>
-		<%= link_to "敏感肌", irritation_ranking_path %>
+		<div class="actions">
+  		<%= link_to "美白", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
+  		<%= link_to "シワ", wrinkle_ranking_path, class: "btn btn-secondary btn-sm" %>
+  		<%= link_to "肌荒れ", acne_cure_ranking_path, class: "btn btn-secondary btn-sm" %>
+  		<%= link_to "乾燥", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
+  		<%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
+  	</div>
 	</div>
 	<% if params[:genre_id] %>
     <% @genre_ranks.each.with_index(1) do |item, i| %>
@@ -41,3 +48,4 @@
       </div>
     <% end %>
   <% end %>
+</div>

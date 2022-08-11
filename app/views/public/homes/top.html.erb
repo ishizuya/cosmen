@@ -7,20 +7,22 @@
   </p>
   </div>
 </div>
-<div class="title">
-  <h2>NEW ITEMS</h2>
-</div>
-<% @items.each do |item| %>
-  <div class="item">
-    <div class="item-image">
-      <%= image_tag item.get_image(200, 200) %>
-    </div>
-    <div class="item-info">
-      <p><%= item.brand %></p>
-      <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-      <p>総評価：<%= item.avg_reviews %></p>
-      <p>カテゴリー：<%= item.genre.name %></p>
-      <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
-    </div>
+<div class="all-view">
+  <div class="title">
+    <h2>NEW ITEMS</h2>
   </div>
-<% end %>
+  <% @items.each do |item| %>
+    <div class="item">
+      <div class="item-image">
+        <%= image_tag item.get_image(200, 200) %>
+      </div>
+      <div class="item-info">
+        <p><%= item.brand %></p>
+        <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
+        <p>総評価：<%= item.avg_reviews %></p>
+        <p>カテゴリー：<%= item.genre.name %></p>
+        <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

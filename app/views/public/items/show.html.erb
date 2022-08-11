@@ -1,49 +1,81 @@
-<div class="title">
-  <h2><span class="show-brand"><%= @item.brand %></span>　<%= @item.name %></h2>
-</div>
-<div class="item-show">
-  <div class="item-image">
-    <%= image_tag @item.get_image(200, 200) %>
+<div class="all-view">
+  <div class="title">
+    <h2><span class="show-brand"><%= @item.brand %></span>　<%= @item.name %></h2>
   </div>
-  <div class="item-info">
+  <div class="item-show">
+    <div class="item-image">
+      <%= image_tag @item.get_image(300, 300) %>
+    </div>
+    <div class="item-info">
       <p>口コミ総評価：<span class="total-rating-value"><%= @item.avg_reviews %></span></p>
       <p>ジャンル：<%= @item.genre.name %></p>
       <p>税込価格(税抜価格)：<%= @item.add_tax_price %>(<%= @item.price.to_s(:delimited) %>)／<%= @item.capacity %> | 発売日：<%= @item.release_date.strftime('%Y/%m/%d') %></p>
+      <p class="mb-0">商品説明：</p>
       <p><%= @item.introduction %></p>
      </div>
    </div>
-<div class="rate">
-  <div class="chart">
-    <%= render 'chart', item: @item %>
+  <div class="review">
+    <h4 class="subtitle">COSMENクチコミ評価</h4>
   </div>
-  <div>
-    <p>シワ評価：<%= @item.avg_wrinkle %></p>
-    <p>美白評価：<%= @item.avg_whitening %></p>
-    <p>保湿評価：<%= @item.avg_moisturizing %></p>
-    <p>ニキビケア評価：<%= @item.avg_acne_cure %></p>
-    <p>刺激の無さ評価：<%= @item.avg_no_irritation %></p>
+  <div class="rate">
+    <div class="chart">
+      <%= render 'chart', item: @item %>
+    </div>
+    <div　class="rate-avg">
+      <% if @reviews.any? %>
+        <p>シワ改善：<%= @item.avg_wrinkle %></p>
+        <p>美白：<%= @item.avg_whitening %></p>
+        <p>保湿：<%= @item.avg_moisturizing %></p>
+        <p>ニキビケア：<%= @item.avg_acne_cure %></p>
+        <p>安全性：<%= @item.avg_no_irritation %></p>
+      <% else %>
+        <p>シワ改善：未評価</p>
+        <p>美白：未評価</p>
+        <p>保湿：未評価</p>
+        <p>ニキビケア：未評価</p>
+        <p>安全性：未評価</p>
+      <% end %>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <div id="favorite-btn-<%= @item.id %>">
+      <%= render 'public/favorites/favorite', item: @item %>
+    </div>
+  <% end %>
+  <% if user_signed_in? %>
+    <%= link_to 'レビューをする', new_item_review_path(@item) %>
+  <% end %>
+  <div class="review">
+    <h4 class="subtitle">最新のクチコミ</h4>
+    <div class="review-index">
+      <% if @reviews.any? %>
+        <% @reviews.each do |review| %>
+          <div class="review-show">
+            <p><%= review.user.age_i18n %>／<%= review.user.sex_i18n %>／<%= review.user.skin_type_i18n %></p>
+            <table>
+              <tr>
+                <td>美白効果：<%= review.whitening %></td>
+              </tr>
+              <tr>
+                <td>シワ改善効果：<%= review.wrinkle %></td>
+              </tr>
+              <tr>
+                <td>保湿効果：<%= review.moisturizing %></td>
+              </tr>
+              <tr>
+                <td>ニキビ改善効果：<%= review.acne_cure %></td>
+              </tr>
+              <tr>
+                <td>刺激の無さ：<%= review.no_irritation %></td>
+              </tr>
+            </table>
+                <p class="text-center mb-0">コメント：</p>
+                <p class="mb-0"><%= review.comment %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p>レビューはありません</p>
+      <% end %>
+    </div>
   </div>
 </div>
-<% if user_signed_in? %>
-  <div id="favorite-btn-<%= @item.id %>">
-    <%= render 'public/favorites/favorite', item: @item %>
-  </div>
-<% end %>
-<% if user_signed_in? %>
-  <%= link_to 'レビューをする', new_item_review_path(@item) %>
-<% end %>
-  <h4>レビュー一覧</h4>
-    <% if @reviews.any? %>
-      <% @reviews.each do |review| %>
-        <div>
-          <p>美白効果：<%= review.whitening %></p>
-          <p>シワ・たるみ改善効果：<%= review.wrinkle %></p>
-          <p>保湿効果：<%= review.moisturizing %></p>
-          <p>肌荒れ・ニキビ改善効果：<%= review.acne_cure %></p>
-          <p>刺激の無さ：<%= review.no_irritation %></p>
-          <p>コメント：<%= review.comment %></p>
-        </div>
-      <% end %>
-    <% else %>
-      <p>レビューはありません</p>
-    <% end %>

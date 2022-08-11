@@ -5,6 +5,7 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
     @reviews = Review.where(item_id: @item.id)
     @favorites = Favorite.where(item_id: @item.id)
+
   end
 
   def ranking

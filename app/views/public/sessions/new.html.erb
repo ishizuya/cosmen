@@ -10,16 +10,16 @@
     この機会に、ぜひご登録をお願いします。
   </p>
 </div>
-<div class="login_form mt-5 p-3">
-  <h5>メールアドレスでログイン</h5>
+<div class="login_form">
+  <h6>メールアドレスでログイン</h6>
   <%= form_with model: @user, url: user_session_path do |f| %>
-    <div class="field m-2">
+    <div class="field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: 60 %>
     </div>
-    <div class="field m-2">
+    <div class="field">
       <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: 60 %>
     </div>
-    <div class="actions m-2">
+    <div class="actions">
       <%= f.submit "ログイン", class: 'btn-block btn-dark btn-lg' %>
     </div>
   <% end %>
