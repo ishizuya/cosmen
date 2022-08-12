@@ -44,15 +44,15 @@ class Public::UsersController < ApplicationController
   def result
     @user = User.find(current_user.id)
     if @user.diagnosis == "1"
-      @items = Item.all.sort_by{|item| item.avg_moisturizing*-1 }.first(5)
+      @items = Item.all.sort_by{|item| item.moisturizing_sort_value*-1 }.first(5)
     elsif @user.diagnosis == "2"
-      @items = Item.all.sort_by{|item| item.avg_whitening*-1 }.first(5)
+      @items = Item.all.sort_by{|item| item.whitening_sort_value*-1 }.first(5)
     elsif @user.diagnosis == "3"
-      @items = Item.all.sort_by{|item| item.avg_wrinkle*-1 }.first(5)
+      @items = Item.all.sort_by{|item| item.wrinkle_sort_value*-1 }.first(5)
     elsif @user.diagnosis == "4"
-      @items = Item.all.sort_by{|item| item.avg_acne_cure*-1 }.first(5)
+      @items = Item.all.sort_by{|item| item.acne_cure_sort_value*-1 }.first(5)
     else
-      @items = Item.all.sort_by{|item| item.avg_no_irritation*-1 }.first(5)
+      @items = Item.all.sort_by{|item| item.no_irritation_sort_value*-1 }.first(5)
     end
   end
 

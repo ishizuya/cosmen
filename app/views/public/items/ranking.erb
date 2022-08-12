@@ -19,5 +19,5 @@
 		<%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
 	</div>
 </div>
-  <%= render 'rank-items', item: @item, genre_ranks: @genre_ranks, all_ranks: @all_ranks, genre: @genre %>
+  <%= render 'rank-items', item: @item, genre_ranks: @genre_ranks, all_ranks: @all_ranks, genre: @genre, reviews: @reviews %>
 </div>

@@ -34,7 +34,11 @@
           <div class="item-info">
             <p><%= item.brand %></p>
             <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-            <p>肌荒れ改善評価：<%= item.avg_acne_cure %></p>
+            <p>肌荒れ改善評価：<%= item.avg_acne_cure %>
+              <% if item.reviews.any? %>
+                (口コミ<%= item.reviews.count %>件)
+              <% end %>
+            </p>
             <p>カテゴリー：<%= item.genre.name %></p>
             <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
           </div>

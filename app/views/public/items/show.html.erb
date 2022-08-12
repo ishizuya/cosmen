@@ -8,7 +8,11 @@
     </div>
     <div class="item-introduction">
       <div class="item-info">
-        <p>口コミ総評価：<span class="total-rating-value"><%= @item.avg_reviews %></span></p>
+        <p>口コミ総評価：<span class="total-rating-value"><%= @item.avg_reviews %></span>
+          <% if @reviews.any? %>
+            (口コミ<%= @reviews.count %>件)
+          <% end %>
+        </p>
         <p>ジャンル：<%= @item.genre.name %></p>
         <p>税込価格(税抜価格)：<%= @item.add_tax_price %>(<%= @item.price.to_s(:delimited) %>)／<%= @item.capacity %>　発売日：<%= @item.release_date.strftime('%Y/%m/%d') %></p>
         <p class="mb-0">商品説明：</p>
@@ -20,7 +24,7 @@
             <%= render 'public/favorites/favorite', item: @item %>
           </div>
           <%= link_to new_item_review_path(@item) do %>
-            <i class="fa-regular fa-comment fa-2x ml-5">口コミする</i>
+            <i class="fa-regular fa-comment fa-2x ml-5"></i>口コミする
           <% end %>
         <% end %>
       </div>
@@ -56,6 +60,7 @@
         <% @reviews.each do |review| %>
           <div class="review-show">
             <p><%= review.user.age_i18n %>／<%= review.user.sex_i18n %>／<%= review.user.skin_type_i18n %></p>
+            <p>投稿日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
             <table class="mb-3">
               <tr>
                 <td>美白効果：<%= review.whitening %></td>

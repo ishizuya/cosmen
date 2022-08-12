@@ -114,6 +114,7 @@ h2 {
 }
 
 .item {
+  width: 80%;
   display: flex;
   border: solid 1px;
   border-radius: 5px;
@@ -131,7 +132,11 @@ h2 {
 }
 
 .item-info{
+  margin-left: 1em;
   padding: 5px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
 }
 
 .review-item{
@@ -233,13 +238,16 @@ myChart {
   margin: 30px;
   display: flex;
   justyify-content: center;
+  flex-wrap: wrap;
 }
 
 .review-show {
   border: dotted 2px #778899;
-  width: 50%;
+  border-radius: 10px;
+  width: 48%;
   margin: 3px;
   padding: 10px;
+  text-align: center;
 }
 
 table {
@@ -266,5 +274,46 @@ td {
 
 .item-introduction {
   display: flex;
+  flex-direction: column;
+}
+
+.review-comment {
+  height: 70px;
+}
+
+.delete-btn {
+  margin-top: 1em;
+}
+
+.radio-button {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  background: #e6e6fa;
+  border-radius: 3px;
+  margin: 1em;
+}
+
+label:hover {
+  background-color: #87cefa;
+}
+
+.radio-button:checked + label {
+  background-color: #6495ed;
+}
+
+.result {
+  margin: 0 auto;
+  width: 80%;
+  margin-bottom: 3em;
+}
+
+.component {
+  display: flex;
+  align-items: center;
   flex-direction: column;
 }

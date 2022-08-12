@@ -1,21 +1,42 @@
 <div class="all-view">
-  <h2>レビュー履歴一覧</h2>
-    <% if @reviews.present? %>
-      <h4>投稿数：<%= @reviews.count %></h4>
+  <div class="title">
+    <h2>口コミ履歴一覧</h2>
+  </div>
+  <div class="subtitle">
+    <h5>口コミ件数 <%= @reviews.count %> 件</h6>
+  </div>
+  <div class="review-index">
+    <% if @reviews.any? %>
       <% @reviews.each do |review| %>
-        <div>
-          <p><%= review.item.brand %>　<%= link_to review.item.name, item_path(review.item_id) %></p>
-          <p>美白効果：<%= review.whitening %></p>
-          <p>シワ・たるみ改善効果：<%= review.wrinkle %></p>
-          <p>保湿効果：<%= review.moisturizing %></p>
-          <p>肌荒れ・ニキビ改善効果：<%= review.acne_cure %></p>
-          <p>刺激の無さ：<%= review.no_irritation %></p>
-          <p>コメント：<%= review.comment %></p>
-          <p>投稿日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-          <%= link_to "削除する", item_review_path(review.item, review), method: :delete, data: {confirm: "削除しますか？"}  %>
+        <div class="review-show">
+          <p><%= review.item.brand %></p>
+          <h6><%= link_to review.item.name, item_path(review.item_id) %></h6>
+           <p>投稿日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+          <table class="mb-3">
+            <tr>
+              <td>美白効果：<%= review.whitening %></td>
+            </tr>
+            <tr>
+              <td>シワ改善効果：<%= review.wrinkle %></td>
+            </tr>
+            <tr>
+              <td>保湿効果：<%= review.moisturizing %></td>
+            </tr>
+            <tr>
+              <td>ニキビ改善効果：<%= review.acne_cure %></td>
+            </tr>
+            <tr>
+              <td>刺激の無さ：<%= review.no_irritation %></td>
+            </tr>
+          </table>
+          <p class="review-comment"><%= review.comment %></p>
+          <div class="delete-btn">
+            <%= link_to "削除する", item_review_path(review.item, review), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-dark btn-sm" %>
+          </div>
         </div>
       <% end %>
     <% else %>
       <p>レビューはありません</p>
     <% end %>
+  </div>
 </div>
