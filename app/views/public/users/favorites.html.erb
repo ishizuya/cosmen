@@ -2,7 +2,9 @@
   <div class="title">
     <h2>お気に入り商品一覧</h2>
   </div>
-  <div>
+  <div class="subtitle">
+    <h5>お気に入り商品 <%= @favorite_items.count %> 件</h6>
+  </div>
     <% if @favorite_items.present? %>
       <% @favorite_items.each do |favorite_item| %>
        <div class="item">

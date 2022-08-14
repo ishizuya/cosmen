@@ -17,13 +17,13 @@
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm bg-dark text-white pt-1 pb-1">
       <nav>
-        <a class="navbar-brand ml-5" href="/"><%= image_tag 'COSMEN.png', size: '110x110' %></a>
+        <a class="navbar-brand ml-5 mt-3" href="/"><%= image_tag 'COSMEN.png', size: '110x110' %></a>
           <div class="float-right mt-4 mr-5">
             <ul>
               <% if admin_signed_in? %>
                 <li class="btn-flat-border"><%= link_to '会員一覧', admin_top_path, class: "btn" %></li>
                 <li class="btn-flat-border"><%= link_to '商品一覧', admin_items_path, class: "btn" %></li>
-                  <li class="btn-flat-border"><%= link_to 'レビュー一覧', admin_reviews_path, class: "btn" %></li>
+                  <li class="btn-flat-border"><%= link_to '口コミ一覧', admin_reviews_path, class: "btn" %></li>
                   <li class="btn-flat-border"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn" %></li>
                 <% elsif user_signed_in? %>
                   <p>ようこそ、<%= current_user.name %>さん!</p>

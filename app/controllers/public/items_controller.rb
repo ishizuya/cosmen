@@ -46,7 +46,7 @@ class Public::ItemsController < ApplicationController
 
   def acne_cure_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.acne_cure_*-1 }
+    @all_ranks = Item.all.sort_by{|item| item.acne_cure_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }

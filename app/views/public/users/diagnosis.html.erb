@@ -4,74 +4,71 @@
   </div>
   <div class="subtitle">
     <p>あなたにおススメの化粧品と成分を提案します！！<br>
-      以下の5つお肌に関する質問にお答えください！！
+      以下の5つお肌に関する質問にお答えください！！<br>
+      診断結果はマイページからいつでもご覧になれます。
     </p>
-      <%= form_with model: @user, url:save_path, local:true do |f| %>
-        <div>
-          <div>
-            <div>
-              <h5>Q1. 手で頬を触ったとき、さらっとしてかさつきが気になる？</h5>
-            </div>
-            <div class="rario-box">
-              <p>
-                <%= f.radio_button :question1, "1", class: "radio-button" %>
-                <%= f.label :question1, 'Yes', value: 1 %>
-                <%= f.radio_button :question1, "2", class: "radio-button" %>
-                <%= f.label :question1, 'No', value: 2 %>
-              </p>
-            </div>
+  </div>
+    <div class="diagnosis">
+  <%= form_with model: @user, url:save_path, local:true do |f| %>
 
-            <div>
-                <h5>Q2. 韓流アイドルみたいな色白になりたい？</h5>
-            </div>
-            <div class="rario-box">
-              <p>
-                <%= f.radio_button :question2, "1", class: "radio-button" %>
-                <%= f.label :question2, 'Yes', value: 1 %>
-                <%= f.radio_button :question2, "2", class: "radio-button" %>
-                <%= f.label :question2, 'No', value: 2 %>
-              </p>
-            </div>
-            <div>
-              <h5>Q3. ほうれい線や目じりのしわが気になり始めた？</h5>
-            </div>
-            <div class="rario-box">
-              <p>
-                <%= f.radio_button :question3, "1", class: "radio-button" %>
-                <%= f.label :question3, 'Yes', value: 1 %>
-                <%= f.radio_button :question3, "2", class: "radio-button" %>
-                <%= f.label :question3, 'No', value: 2 %>
-              </p>
-            </div>
-
-            <div>
-              <h5>Q4. 肌荒れやニキビをとにかく治したい？</h5>
-            </div>
-            <div class="rario-box">
-              <p>
-                <%= f.radio_button :question4, "1", class: "radio-button" %>
-                <%= f.label :question4, 'Yes', value: 1 %>
-                <%= f.radio_button :question4, "2", class: "radio-button" %>
-                <%= f.label :question4, 'No', value: 2 %>
-              </p>
-            </div>
-
-            <div>
-              <h5>Q5. 化粧品でピリピリと刺激を感じたり、痒くなったりすることがある？</h5>
-            </div>
-            <div class="rario-box">
-              <p>
-                <%= f.radio_button :question5, "1", class: "radio-button" %>
-                <%= f.label :question5, 'Yes', value: 1 %>
-                <%= f.radio_button :question5, "2", class: "radio-button" %>
-                <%= f.label :question5, 'No', value: 2 %>
-              </p>
-            </div>
-        </div>
-    </div>
-    <div class="actions">
-        <%= f.submit "診断する", class: "btn btn-dark btn-sm" %>
+      <div class="question">
+        <h5>Q1. 手で頬を触ったとき、さらっとしてかさつきが気になる？</h5>
+      </div>
+      <div class="rario-box">
+        <p>
+          <%= f.radio_button :question1, "1", class: "radio-button" %>
+          <%= f.label :question1, 'Yes', value: 1, class: "label" %>
+          <%= f.radio_button :question1, "2", class: "radio-button" %>
+          <%= f.label :question1, 'No', value: 2, class: "label" %>
+        </p>
+      </div>
+      <div class="question">
+          <h5>Q2. 韓流アイドルみたいな色白に憧れる？</h5>
+      </div>
+      <div class="rario-box">
+        <p>
+          <%= f.radio_button :question2, "1", class: "radio-button" %>
+          <%= f.label :question2, 'Yes', value: 1, class: "label" %>
+          <%= f.radio_button :question2, "2", class: "radio-button" %>
+          <%= f.label :question2, 'No', value: 2, class: "label" %>
+        </p>
+      </div>
+      <div class="question">
+        <h5>Q3. ほうれい線や目じりのしわが気になり始めた？</h5>
+      </div>
+      <div class="rario-box">
+        <p>
+          <%= f.radio_button :question3, "1", class: "radio-button" %>
+          <%= f.label :question3, 'Yes', value: 1, class: "label" %>
+          <%= f.radio_button :question3, "2", class: "radio-button" %>
+          <%= f.label :question3, 'No', value: 2, class: "label" %>
+        </p>
+      </div>
+      <div class="question">
+        <h5>Q4. 肌荒れやニキビをとにかく治したい？</h5>
+      </div>
+      <div class="rario-box">
+        <p>
+          <%= f.radio_button :question4, "1", class: "radio-button" %>
+          <%= f.label :question4, 'Yes', value: 1, class: "label" %>
+          <%= f.radio_button :question4, "2", class: "radio-button" %>
+          <%= f.label :question4, 'No', value: 2, class: "label" %>
+        </p>
+      </div>
+      <div class="question">
+        <h5>Q5. 化粧品でお肌に刺激を感じたり、赤みがでたりすることがある？</h5>
+      </div>
+      <div class="rario-box">
+        <p>
+          <%= f.radio_button :question5, "1", class: "radio-button" %>
+          <%= f.label :question5, 'Yes', value: 1, class: "label" %>
+          <%= f.radio_button :question5, "2", class: "radio-button" %>
+          <%= f.label :question5, 'No', value: 2, class: "label" %>
+        </p>
+      </div>
+    <div class="text-center">
+      <%= f.submit "診断する", class: "btn btn-dark btn-sm" %>
     </div>
   <% end %>
-  </div>
+    </div>
 </div>

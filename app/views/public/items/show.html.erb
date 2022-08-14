@@ -32,25 +32,26 @@
    </div>
   <div class="review">
     <h4 class="subtitle">COSMENクチコミ評価</h4>
+    <p>口コミ件数<%= @reviews.count %>件</p>
   </div>
   <div class="rate">
     <div class="chart">
       <%= render 'chart', item: @item %>
     </div>
     <div　class="rate-avg">
-      <% if @reviews.any? %>
+      <!-- if @reviews.any? -->
         <p>シワ改善：<%= @item.avg_wrinkle %></p>
         <p>美白：<%= @item.avg_whitening %></p>
         <p>保湿：<%= @item.avg_moisturizing %></p>
         <p>ニキビケア：<%= @item.avg_acne_cure %></p>
         <p>安全性：<%= @item.avg_no_irritation %></p>
-      <% else %>
-        <p>シワ改善：未評価</p>
-        <p>美白：未評価</p>
-        <p>保湿：未評価</p>
-        <p>ニキビケア：未評価</p>
-        <p>安全性：未評価</p>
-      <% end %>
+      <!--else-->
+      <!--  <p>シワ改善：未評価</p>-->
+      <!--  <p>美白：未評価</p>-->
+      <!--  <p>保湿：未評価</p>-->
+      <!--  <p>ニキビケア：未評価</p>-->
+      <!--  <p>安全性：未評価</p>-->
+      <!--end-->
     </div>
   </div>
   <div class="review">
@@ -61,7 +62,7 @@
           <div class="review-show">
             <p><%= review.user.age_i18n %>／<%= review.user.sex_i18n %>／<%= review.user.skin_type_i18n %></p>
             <p>投稿日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-            <table class="mb-3">
+            <table class="review-table">
               <tr>
                 <td>美白効果：<%= review.whitening %></td>
               </tr>

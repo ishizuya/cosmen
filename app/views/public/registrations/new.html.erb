@@ -1,52 +1,54 @@
-<div class="title">
-  <h2>新規会員登録</h2>
+<div class="all-view">
+  <div class="title">
+    <h2>新規会員登録</h2>
+  </div>
+  <div class="introduction">
+    <p>
+      <span class="introduction_title">メンズ用化粧品レビューサイト「COSMEN」</span><br>
+      登録料・年会費無料のCOSMENの会員サイトです。<br>
+      COSMENに登録することで、化粧品の評価ランキングを見ることができ、<br>
+      あなたに合った化粧品や成分を提案する化粧品診断をすることができます。<br>
+      この機会に、ぜひご登録をお願いします。
+    </p>
+  </div>
+  <div class="form">
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.label :"ユーザーネーム" %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", size: 60 %>
+      </div>
+      <div class="field">
+        <%= f.label :"メールアドレス" %><br />
+        <%= f.email_field :email, size: 60 %>
+      </div>
+      <div class="field">
+        <%= f.label :"年齢" %><br />
+        <%= f.select :age, User.ages.keys.map {|k| [I18n.t("enums.user.age.#{k}"), k]}, include_blank: "選択して下さい", class: "select-box" %>
+      </div>
+      <div class="field">
+        <%= f.label :"性別" %><br />
+        <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]}, include_blank: "選択して下さい", class: "w-100" %>
+      </div>
+      <div class="field">
+        <%= f.label :"肌質" %><br />
+        <%= f.select :skin_type, User.skin_types.keys.map {|k| [I18n.t("enums.user.skin_type.#{k}"), k]}, include_blank: "選択して下さい", size: 60  %>
+      </div>
+      <div class="field">
+        <%= f.label :"パスワード", size: 60 %>
+        <% if @minimum_password_length %>
+          <em>（<%= @minimum_password_length %> 文字以上）</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", size: 60 %>
+      </div>
+      <div class="field">
+        <%= f.label :"パスワード確認" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", size: 60 %>
+      </div>
+      <div class="actions">
+        <%= f.submit "新規会員登録", class: 'btn-block btn-dark btn-lg' %>
+      </div>
+    <% end %>
+  </div>
+  <%= render "public/shared/links" %>
 </div>
-<div class="introduction">
-  <p>
-    <span class="introduction_title">メンズ用化粧品レビューサイト「COSMEN」</span><br>
-    登録料・年会費無料のCOSMENの会員サイトです。<br>
-    COSMENに登録することで、化粧品の評価ランキングを見ることができ、<br>
-    あなたに合った化粧品や成分を提案する化粧品診断をすることができます。<br>
-    この機会に、ぜひご登録をお願いします。
-  </p>
-</div>
-<div class="form">
-  <%= form_with model: @user, url: user_registration_path do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
-    <div class="field">
-      <%= f.label :"ユーザーネーム" %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", size: 60 %>
-    </div>
-    <div class="field">
-      <%= f.label :"メールアドレス" %><br />
-      <%= f.email_field :email, size: 60 %>
-    </div>
-    <div class="field">
-      <%= f.label :"年齢" %><br />
-      <%= f.select :age, User.ages.keys.map {|k| [I18n.t("enums.user.age.#{k}"), k]}, include_blank: "選択して下さい", class: "select-box" %>
-    </div>
-    <div class="field">
-      <%= f.label :"性別" %><br />
-      <%= f.select :sex, User.sexes.keys.map {|k| [I18n.t("enums.user.sex.#{k}"), k]}, include_blank: "選択して下さい", class: "w-100" %>
-    </div>
-    <div class="field">
-      <%= f.label :"肌質" %><br />
-      <%= f.select :skin_type, User.skin_types.keys.map {|k| [I18n.t("enums.user.skin_type.#{k}"), k]}, include_blank: "選択して下さい", size: 60  %>
-    </div>
-    <div class="field">
-      <%= f.label :"パスワード", size: 60 %>
-      <% if @minimum_password_length %>
-        <em>（<%= @minimum_password_length %> 文字以上）</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", size: 60 %>
-    </div>
-    <div class="field">
-      <%= f.label :"パスワード確認" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", size: 60 %>
-    </div>
-    <div class="actions">
-      <%= f.submit "新規会員登録", class: 'btn-block btn-dark btn-lg' %>
-    </div>
-  <% end %>
-</div>
-<%= render "public/shared/links" %>

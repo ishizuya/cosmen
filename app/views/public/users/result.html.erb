@@ -2,7 +2,6 @@
   <div class="title">
     <h2>化粧品診断結果</h2>
   </div>
-    診断結果：<%= @user.diagnosis %>
   <div class="result">
     <% if @user.diagnosis == "1" %>
       <h4>あなたには<strong>保湿</strong>効果の高い化粧品をおススメします</h4>
@@ -68,18 +67,25 @@
       </ul>
     <% end %>
   </div>
+  <div class="subtitle">
     <h4>おすすめの化粧品</h4>
-    <div>
-      <% @items.each do |item| %>
-      <div>
-        <%= image_tag item.get_image(200, 200) %>
-        <p><%= item.brand %></p>
-        <p><%= link_to item.name, item_path(item.id) %></p>
-        <h4>総評価：<%= item.avg_reviews %></h4>
-        <p><%= item.genre.name %></p>
-        <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-        <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
-      </div>
-      <% end %>
-    </div>
   </div>
+  <% @items.each do |item| %>
+    <div class="item">
+      <div class="item-image">
+        <%= image_tag item.get_image(200, 200) %>
+      </div>
+      <div class="item-info">
+        <p><%= item.brand %></p>
+        <h6><%= link_to item.name, item_path(item.id),class: "item-name" %></h6>
+        <p>総評価：<%= item.avg_reviews %>
+          <% if item.reviews.any? %>
+            (口コミ<%= item.reviews.count %>件)
+        <% end %>
+        </p>
+        <p>カテゴリー：<%= item.genre.name %></p>
+        <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

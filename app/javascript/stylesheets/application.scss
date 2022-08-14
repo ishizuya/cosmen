@@ -17,7 +17,6 @@
   border: solid 2px #d3d3d3;
   border-radius: 8px;
   transition: .4s;
-
 }
 
 .btn-flat-border:hover {
@@ -27,26 +26,27 @@
 
 .actions {
   display: inline-block;
-  margin-bottom: 5px;
+  margin: 1em auto;
+  text-align: center;
 }
 
 .introduction{
+  width: 70%;
   border: solid 2px ;
   border-radius: 8px;
-  width: 50%;
   margin: 0 auto;
   padding: 1.5em;
 }
 
-.introduction_title {
-  font-weight: bold;
-  margin: 0 auto;
-}
+// .introduction_title {
+//   font-weight: bold;
+//   margin: 0 auto;
+// }
 
 .form {
   margin: 0 auto;
   background-color: #f5f5f5;
-  width: 50%;
+  width: 70%;
   text-align: center;
   padding: 10px;
   margin-top: 10px;
@@ -73,9 +73,7 @@ span {
 
 .all-view{
   width: 70%;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  margin-top: 10px;
+  margin: 1em auto 3em;
 }
 
 .title {
@@ -250,7 +248,7 @@ myChart {
   text-align: center;
 }
 
-table {
+.review-table {
   margin: 0 auto;
   margin-bottom: 5px;
 }
@@ -289,7 +287,7 @@ td {
   display: none;
 }
 
-label {
+.label {
   display: inline-block;
   padding: 0.5em 2em;
   text-decoration: none;
@@ -298,7 +296,7 @@ label {
   margin: 1em;
 }
 
-label:hover {
+.label:hover {
   background-color: #87cefa;
 }
 
@@ -317,3 +315,45 @@ label:hover {
   align-items: center;
   flex-direction: column;
 }
+
+.diagnosis {
+  width: 80%;
+  margin: 5em auto;
+  text-align: center;
+}
+
+.rario-box {
+  text-align: center;
+}
+
+.user-table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.user-head {
+  text-align: center;
+}
+
+.user-record {
+  text-align: center;
+}
+
+.user-no {
+  width: 100px;
+}
+
+.user-name {
+  width: 250px;
+}
+
+.user-status {
+  width: 150px;
+}
+
+.user-table tr:nth-child(odd){
+  background-color: #eee
+}
+
+.user

@@ -1,27 +1,29 @@
-<div class="title">
-  <h2>ログイン</h2>
+<div class="all-view">
+  <div class="title">
+    <h2>ログイン</h2>
+  </div>
+  <div class="introduction">
+    <p>
+      <strong>メンズ用化粧品レビューサイト「COSMEN」</strong><br>
+      登録料・年会費無料のCOSMENの会員サイトです。<br>
+      COSMENに登録することで、化粧品の評価ランキングを見ることができ、<br>
+      あなたに合った化粧品や成分を提案する化粧品診断をすることができます。<br>
+      この機会に、ぜひご登録をお願いします。
+    </p>
+  </div>
+  <div class="form">
+    <h6>メールアドレスでログイン</h6>
+    <%= form_with model: @user, url: user_session_path do |f| %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: 60 %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: 60 %>
+      </div>
+      <div class="actions">
+        <%= f.submit "ログイン", class: 'btn-block btn-dark btn-lg' %>
+      </div>
+    <% end %>
+  </div>
+    <%= render "public/shared/links" %>
 </div>
-<div class="introduction">
-  <p>
-    <span class="introduction_title">メンズ用化粧品レビューサイト「COSMEN」</span><br>
-    登録料・年会費無料のCOSMENの会員サイトです。<br>
-    COSMENに登録することで、化粧品の評価ランキングを見ることができ、<br>
-    あなたに合った化粧品や成分を提案する化粧品診断をすることができます。<br>
-    この機会に、ぜひご登録をお願いします。
-  </p>
-</div>
-<div class="form">
-  <h6>メールアドレスでログイン</h6>
-  <%= form_with model: @user, url: user_session_path do |f| %>
-    <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", size: 60 %>
-    </div>
-    <div class="field">
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: 60 %>
-    </div>
-    <div class="actions">
-      <%= f.submit "ログイン", class: 'btn-block btn-dark btn-lg' %>
-    </div>
-  <% end %>
-</div>
-  <%= render "public/shared/links" %>
