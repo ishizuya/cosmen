@@ -1,21 +1,45 @@
-<h1>商品追加</h1>
-  <%= form_with model: @item, url:admin_items_path, local:true do |f| %>
-    <p>画像</p>
-      <div id="new-image"></div>
-      <%= f.file_field :image, accept: "image/*" %>
-    <p>ブランド名</p>
-      <%= f.text_field :brand %>
-    <p>商品名</p>
-      <%= f.text_field :name %>
-    <p>ジャンル</p>
-       <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "選択してください" %>
-    <p>参考価格</p>
-      <%= f.text_field :price %>円
-    <p>容量</p>
-      <%= f.text_field :capacity %>
-    <p>販売日時</p>
-      <%= f.date_select :release_date, start_year: 2000 %>
-    <p>商品説明</p>
-      <%= f.text_area :introduction %>
-    <%= f.submit '追加する' %>
-  <% end %>
+<div class="all-view">
+  <div class="title">
+    <h2>商品追加</h2>
+  </div>
+  <div class="form">
+    <%= form_with model: @item, url:admin_items_path, local:true do |f| %>
+      <div class="field">
+        <%= f.label :"商品画像" %><br>
+        <div id="new-image"></div>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+      <div class="field">
+        <%= f.label :"ブランド" %><br>
+        <%= f.text_field :brand, autofocus: true, size: 50 %>
+      </div>
+      <div class="field">
+        <%= f.label :"商品名" %><br>
+        <%= f.text_field :name, size: 50 %>
+      </div>
+      <div class="field">
+        <%= f.label :"カテゴリー" %><br>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name, selected: @item.genre_id), id:"inputGenre_id" %>
+      </div>
+      <div class="field">
+        <%= f.label :"税抜価格" %></br>
+        <%= f.text_field :price %>円
+      </div>
+      <div class="field">
+        <%= f.label :"容量" %></br>
+        <%= f.text_field :capacity %>
+      </div>
+      <div class="field">
+        <%= f.label :"販売日" %></br>
+        <%= raw sprintf(f.date_select(:release_date, use_month_numbers: true, start_year: 2000, end_year: (Time.now.year + 1), date_separator: '%s'), '年 ', '月 ') + '日' %>
+      </div>
+      <div class="field">
+        <%= f.label :"商品説明" %></br>
+        <%= f.text_area :introduction, class: "introduction" %>
+      </div>
+      <div class="actios">
+        <%= f.submit '追加する', class: "btn btn-dark btn-sm m-1" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:search, :index, :show ]
 
   def show
     @item = Item.where_genre_active.find(params[:id])
@@ -92,6 +93,6 @@ class Public::ItemsController < ApplicationController
 
   protected
   def item_params
-    params.require(:item).permit(:keyword, :genre_id)
+    params.require(:item).permit(:name, :brand, :price, :capacity, :introduction, :release_date, :keyword, :genre_id)
   end
 end

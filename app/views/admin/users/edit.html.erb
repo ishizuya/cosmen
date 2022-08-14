@@ -5,6 +5,9 @@
   <div class="form">
     <%= form_with model: @user, url:admin_user_path(@user), local:true do |f| %>
       <p>
+        ユーザーID：<%= @user.id %>
+      </p>
+      <p>
         ユーザーネーム：<%= f.text_field :name,  autofocus: true %>
       </p>
       <p>
@@ -30,7 +33,7 @@
           <%= f.label :退会 %>
       </p>
       <div>
-        <%= f.submit '変更を保存', class: "btn btn-success" %>
+        <%= f.submit '変更を保存', class: "btn btn-dark btn-sm" %>
       </div>
     <% end %>
   </div>

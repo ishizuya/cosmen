@@ -1,6 +1,6 @@
 <div class="top-image">
   <div class="top-introduction">
-  <span class="introduction_title">メンズ用化粧品レビューサイト「COSMEN」</span>
+  <strong>メンズ用化粧品レビューサイト「COSMEN」</strong>
   <p>
     忙しい朝や一日の終わり、化粧品はあなたに潤いと癒しを与えます。<br>
     なにげない毎日のシーンに、化粧品を届けたい。<br>
@@ -18,7 +18,7 @@
       </div>
       <div class="item-info">
         <p><%= item.brand %></p>
-        <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
+        <h6><%= link_to item.name, item_path(item.id),class: "item-name" %></h6>
         <p>
           総評価：<%= item.avg_reviews %>
           <% if item.reviews.any? %>

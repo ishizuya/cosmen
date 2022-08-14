@@ -1,6 +1,26 @@
-<h1>レビュー履歴一覧</h1>
-  <% @reviews.each do |review| %>
-    <div>
-      　<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %> <%= review.item.brand %> <%= link_to review.item.name, admin_item_path(review.item_id) %>　<%= link_to review.user.name,  edit_admin_user_path(review.user_id) %>　<%= link_to "詳細", admin_review_path(review.id) %>
-    </div>
-  <% end %>
+<div class="all-view">
+  <div class="title">
+    <h2>口コミ履歴一覧</h2>
+  </div>
+  <table class="table">
+    <% @reviews.each do |review| %>
+      <tr>
+        <td>
+        　<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </td>
+        <td>
+          <%= review.item.brand %>
+        </td>
+        <td>
+          <%= link_to review.item.name, admin_item_path(review.item_id) %>
+        </td>
+        <td>
+          <%= link_to review.user.name, edit_admin_user_path(review.user_id) %>
+        </td>
+        <td>
+          <%= link_to "詳細", admin_review_path(review.id), class: "btn btn-dark btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

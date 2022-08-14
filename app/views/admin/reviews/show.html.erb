@@ -1,14 +1,61 @@
-<h2>レビュー詳細</h2>
-<p><%= @review.item.brand %></p>
-<p><%= link_to @review.item.name, admin_item_path(@review.item_id) %></p>
-<p><%= link_to @review.user.name,  edit_admin_user_path(@review.user_id) %></p>
-<p>年齢：<%= @review.user.age_i18n %></p>
-<p>性別：<%= @review.user.sex_i18n %></p>
-<p><%= @review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-<p>美白効果：<%= @review.whitening %></p>
-<p>しわ・たるみ：<%= @review.wrinkle %></p>
-<p>保湿：<%= @review.moisturizing %></p>
-<p>肌荒れ・ニキビ：<%= @review.acne_cure %></p>
-<p>安全性：<%= @review.no_irritation %></p>
-<p>コメント：<%= @review.comment %></p>
-<p><%= link_to "削除", admin_review_path(@review.id), method: :delete, data: {confirm: "削除しますか？"}  %></p>
+<div class="all-view">
+  <div class="title">
+    <h2>レビュー詳細</h2>
+  </div>
+  <table class="t-review">
+    <tr>
+      <th>ブランド</th>
+      <td><%= @review.item.brand %></td>
+    </tr>
+    <tr>
+      <th>商品名</th>
+      <td><%= link_to @review.item.name, admin_item_path(@review.item_id) %></td>
+    </tr>
+    <tr>
+      <th>ユーザーID</th>
+      <td><%= link_to @review.user.id,  edit_admin_user_path(@review.user_id) %></td>
+    </tr>
+    <tr>
+      <th>ユーザーネーム</th>
+      <td><%= link_to @review.user.name,  edit_admin_user_path(@review.user_id) %></td>
+    </tr>
+    <tr>
+      <th>年齢</th>
+      <td><%= @review.user.age_i18n %></td>
+    </tr><tr>
+      <th>性別</th>
+      <td><%= @review.user.sex_i18n %></td>
+    </tr>
+    <tr>
+      <th>投稿日時</th>
+      <td><%= @review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+    </tr>
+    <tr>
+      <th>保湿評価</th>
+      <td><%= @review.moisturizing %></td>
+    </tr>
+    <tr>
+      <th>美白評価</th>
+      <td><%= @review.whitening %></td>
+    </tr>
+    <tr>
+      <th>シワ評価</th>
+      <td><%= @review.wrinkle %></td>
+    </tr>
+    <tr>
+      <th>肌荒れ評価</th>
+      <td><%= @review.acne_cure %></td>
+    </tr>
+    <tr>
+      <th>安全性評価</th>
+      <td><%= @review.no_irritation %></td>
+    </tr>
+    <tr>
+      <th>コメント</th>
+      <td><%= @review.comment %></td>
+    </tr>
+  </table>
+  <div class="button">
+    <%= link_to "削除", admin_review_path(@review.id), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-dark btn-sm" %>
+  </div>
+</div>

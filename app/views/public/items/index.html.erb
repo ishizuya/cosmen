@@ -10,7 +10,7 @@
     <% end %>
   </div>
 
-   <% if params[:keyword].present? %>
+  <% if params[:keyword].present? %>
     <div class="item-list">
       <% if @items.present? %>
         <h5 class = "text-center">
@@ -60,5 +60,7 @@
         </div>
       </div>
     <% end %>
+  <% else %>
+    <h5 class="text-center">キーワード・カテゴリーから商品を検索してください。</h5>
   <% end %>
 </div>

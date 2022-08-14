@@ -1,48 +1,30 @@
-<h1>商品検索</h1>
-
-<div class="search-form">
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword, value: @keyword, :placeholder =>"例）商品名 ブランド 美白 毛穴" %>
-    <%= select_tag "genre_id", options_from_collection_for_select(Genre.all, :id, :name), include_blank: "全部" %>
-  <%= f.submit "検索" %>
-  <% end %>
-</div>
-
- <% if params[:keyword].present? %>
-  <div class="item-list">
-    <% if @items.present? %>
-      <h4 class = "seach-result">
-        <% if params[:genre_id].present? %>
-          <%= params[:keyword] %>　<%= @genre.name %> の検索結果
-        <% else %>
-          <%= params[:keyword] %> の検索結果
-        <% end %>
-      </h4>
-      <% @items.each do |item| %>
-        <div>
-          <p><%= item.id %></p>
-          <p><%= item.brand %></p>
-          <p><%= link_to item.name, admin_item_path(item.id) %></p>
-          <p><%= item.genre.name %></p>
-          <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-          <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
-        </div>
-      <% end %>
-    <% else %>
-      <h4 class = "seach-result">
-        "<%= params[:keyword] %>" に該当する商品はありませんでした
-      </h4>
-    <% end %>
+<div class="item-index">
+  <div class="title">
+    <h2>商品一覧</h2>
   </div>
-<% else %>
-  <% @items.each do |item| %>
-    <div>
-      <p><%= item.id %></p>
-      <p><%= item.brand %></p>
-      <p><%= link_to item.name, admin_item_path(item.id) %></p>
-      <p><%= item.genre.name %></p>
-      <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-      <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
-    </div>
-  <% end %>
-<% end %>
+  <div class="button">
+    <%= link_to "商品追加", new_admin_item_path, class: "btn btn-dark btn-sm mb-5" %>
+  </div>
+  <table class="table">
+    <tr class="record">
+      <th class="t-id">商品ID</th>
+      <th class="t-brand">ブランド</th>
+      <th class="t-name">商品名</th>
+      <th class="t-genre">カテゴリー</th>
+      <th class="t-release">発売日</th>
+      <th class="t-create">登録日時</th>
+      <th></th>
+    </tr>
+    <% @items.each do |item| %>
+    <tr class="record">
+      <td><%= item.id %></td>
+      <td><%= item.brand %></td>
+      <td><%= link_to item.name, admin_item_path(item.id) %></td>
+      <td><%= item.genre.name %></td>
+      <td><%= item.release_date.strftime('%Y/%m/%d') %></td>
+      <td><%= item.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+      <td><%= link_to "詳細", admin_item_path(item.id), class:"btn btn-dark btn-sm m-1" %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

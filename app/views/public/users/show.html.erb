@@ -3,12 +3,11 @@
     <h2>マイページ</h2>
   </div>
   <div class="mypage">
-    <p>マイネーム：<%= @user.name %></p>
+    <p>ユーザーネーム：<%= @user.name %></p>
     <p>メールアドレス：<%= @user.email %></p>
     <p>年齢：<%= @user.age_i18n %></p>
     <p>性別：<%= @user.sex_i18n %></p>
     <p>肌質：<%= @user.skin_type_i18n %></p>
-    <p>診断結果：<%= @user.diagnosis %></p>
     <div class="actions">
       <%= link_to "化粧品診断結果", result_path, class: "btn-block btn-dark btn-lg" %>
     </div>

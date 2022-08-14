@@ -33,7 +33,6 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   protected
-  # 退会しているかを判断するメソッド
   def user_state
     @user = User.find_by(email: params[:user][:email])
     if @user
