@@ -20,12 +20,13 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.where(user_id: current_user.id).order(created_at: :desc)
+    @reviews_count = @reviews.count
+    @reviews = Kaminari.paginate_array(@reviews).page(params[:page]).per(6)
   end
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    flash[:success] = '削除しました'
     redirect_to reviews_path
   end
 

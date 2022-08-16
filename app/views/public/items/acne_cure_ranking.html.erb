@@ -1,6 +1,6 @@
 <div class="all-view">
   <div class="title">
-    <h2>肌荒れ改善ランキング</h2>
+    <h2>ニキビ改善ランキング</h2>
   </div>
   <%= render 'search-bar', genres: @genres %>
 	<% if params[:genre_id] %>
@@ -8,6 +8,7 @@
       <h3>「<%= @genre.name %>」ランキング</h3>
     </div>
     <% @items.each.with_index(1) do |item, i| %>
+      <% i += @ranking %>
       <div class="items">
         <div class="rank-image">
           <h4>第<%= i %>位</h4>
@@ -18,7 +19,7 @@
         <div class="item-info">
           <p><%= item.brand %></p>
           <h6 class="item-name"><%= link_to item.name, item_path(item.id), class: "item-name" %></h6>
-          <p>肌荒れ改善評価：<%= item.avg_acne_cure %>
+          <p>ニキビ改善評価：<%= item.avg_acne_cure %>
             <% if item.reviews.any? %>
               (口コミ<%= item.reviews.count %>件)
             <% end %>
@@ -34,6 +35,7 @@
       <h3>全カテゴリーランキング</h3>
     </div>
     <% @items.each.with_index(1) do |item, i| %>
+      <% i += @ranking %>
       <div class="items">
         <div class="rank-image">
           <h4>第<%= i %>位</h4>
@@ -44,7 +46,12 @@
         <div class="item-info">
           <p><%= item.brand %></p>
           <h6 class="item-name"><%= link_to item.name, item_path(item.id), class: "item-name" %></h6>
-          <p>肌荒れ改善評価：<%= item.avg_acne_cure %></p>
+          <p>
+            ニキビ改善評価：<%= item.avg_acne_cure %>
+            <% if item.reviews.any? %>
+              (口コミ<%= item.reviews.count %>件)
+            <% end %>
+          </p>
           <p>カテゴリー：<%= item.genre.name %></p>
           <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
           <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>

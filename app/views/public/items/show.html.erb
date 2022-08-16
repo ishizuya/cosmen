@@ -11,10 +11,10 @@
         <p>
           口コミ総評価：<span class="total-rating-value"><%= @item.avg_reviews %></span>
           <% if @reviews.any? %>
-            (口コミ<%= @reviews.count %>件)
+            (口コミ<%= @reviews_count %>件)
           <% end %>
         </p>
-        <p>ジャンル：<%= @item.genre.name %></p>
+        <p>カテゴリー：<%= @item.genre.name %></p>
         <p>税込価格(税抜価格)：<%= @item.add_tax_price %>円</%>(<%= @item.price.to_s(:delimited) %>円)／<%= @item.capacity %></p>
         <p>発売日：<%= @item.release_date.strftime('%Y/%m/%d') %></p>
         <p class="mb-0">商品説明</p>
@@ -36,50 +36,23 @@
     <h4 class="subtitle">COSMEN口コミ評価</h4>
   </div>
   <% if @reviews.any? %>
-    <div class="subtitle">
-      <h5>口コミ件数<%= @reviews.count %>件</h5>
-    </div>
     <div class="rate">
       <div class="chart">
         <%= render 'chart', item: @item %>
       </div>
       <div class="rate-avg">
-        <p>保湿：<%= @item.avg_moisturizing %></p>
-        <p>美白：<%= @item.avg_whitening %></p>
-        <p>シワ改善：<%= @item.avg_wrinkle %></p>
-        <p>肌荒れ改善：<%= @item.avg_acne_cure %></p>
-        <p>刺激の無さ：<%= @item.avg_no_irritation %></p>
+        <p>保湿評価：<%= @item.avg_moisturizing %></p>
+        <p>美白評価：<%= @item.avg_whitening %></p>
+        <p>シワ改善評価：<%= @item.avg_wrinkle %></p>
+        <p>ニキビ改善評価：<%= @item.avg_acne_cure %></p>
+        <p>敏感肌向け評価：<%= @item.avg_no_irritation %></p>
       </div>
     </div>
     <div class="subtitle">
-      <h5>最新のクチコミ</h5>
+      <h5 class="subtitle">最新の口コミ</h5>
+      <p>口コミ件数<%= @reviews_count %>件</p>
     </div>
-    <div class="review-index">
-      <% @reviews.each do |review| %>
-        <div class="review-show">
-          <p><%= review.user.age_i18n %>／<%= review.user.sex_i18n %>／<%= review.user.skin_type_i18n %></p>
-          <p>投稿日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-          <table class="t-review">
-            <tr>
-              <th>保湿：<%= review.moisturizing %></th>
-            </tr>
-            <tr>
-              <th>美白：<%= review.whitening %></th>
-            </tr>
-            <tr>
-              <th>シワ改善：<%= review.wrinkle %></th>
-            </tr>
-            <tr>
-              <th>肌荒れ改善：<%= review.acne_cure %></th>
-            </tr>
-            <tr>
-              <th>刺激の無さ：<%= review.no_irritation %></th>
-            </tr>
-          </table>
-          <p class="review-comment"><%= review.comment %></p>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'public/reviews/review', reviews: @reviews %>
   <% else %>
     <div class="subtitle">
       <p>口コミはありません</p>

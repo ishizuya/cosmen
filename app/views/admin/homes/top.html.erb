@@ -13,7 +13,7 @@
         <th class="user-status">会員ステータス</td>
         <th></th>
       </tr>
-      <% @user.each do |user| %>
+      <% @users.each do |user| %>
         <tr class="record">
           <td><%= user.id %></td>
           <td><%= user.name %></td>
@@ -32,5 +32,6 @@
         </tr>
       <% end %>
     </table>
+    <%= paginate  @users %>
   </div>
 </div>

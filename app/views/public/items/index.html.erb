@@ -9,7 +9,6 @@
       <%= f.submit "検索", class: "search_btn" %>
     <% end %>
   </div>
-
   <% if params[:keyword].present? %>
     <div class="item-list">
       <% if @items.present? %>
@@ -21,9 +20,7 @@
           <% end %>
         </h5>
         <%= render 'public/items/item', items: @items %>
-        <div class="paginate">
-          <%= paginate @items %>
-        </div>
+        <%= paginate @items %>
       <% else %>
         <h5 class= "text-center">
           "<%= params[:keyword] %>" に該当する商品はありませんでした

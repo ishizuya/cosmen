@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
     @user = current_user
     #@user = User.find(params[:id])
@@ -33,7 +33,9 @@ class Public::UsersController < ApplicationController
 
   def favorites
     favorites = Favorite.where(user_id: current_user.id).order(created_at: :desc).pluck(:item_id)
-    @favorite_items = Item.find(favorites)
+    @items = Item.find(favorites)
+    @items = Kaminari.paginate_array(@items).page(params[:page])
+    @items_count = Item.find(favorites).count
   end
 
   def diagnosis

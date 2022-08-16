@@ -1,6 +1,6 @@
 <div class="all-view">
   <div class="title">
-    <h2>口コミ履歴一覧</h2>
+    <h2>口コミ一覧</h2>
   </div>
   <table class="table">
     <% @reviews.each do |review| %>
@@ -23,4 +23,5 @@
       </tr>
     <% end %>
   </table>
+  <%= paginate  @reviews %>
 </div>

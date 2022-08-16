@@ -2,72 +2,63 @@
   <div class="title">
     <h2>美白ランキング</h2>
   </div>
-  <div class="sidebar">
-		<h4>カテゴリー別</h4>
-		<div class="actions">
-	    <%= link_to "全カテゴリー", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
-		  <% @genres.each do |genre| %>
-			  <%= link_to genre.name, whitening_ranking_path(genre_id: genre.id), class: "btn btn-secondary btn-sm" %>
-		  <% end %>
-		</div>
-		<h4>お悩み別</h4>
-		<div class="actions">
-  		<%= link_to "美白", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "シワ", wrinkle_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "肌荒れ", acne_cure_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "乾燥", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
-  		<%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
-  	</div>
-  </div>
-    	<% if params[:genre_id] %>
-  	  <div class="subtitle">
-        <h3>「<%= @genre.name %>」ランキング</h3>
-      </div>
-      <% @genre_ranks.each.with_index(1) do |item, i| %>
-        <div class="item">
-          <div class="rank-image">
-            <h4>第<%= i %>位</h4>
-            <div class="item-image">
-              <%= image_tag item.get_image(200, 200) %>
-            </div>
-          </div>
-          <div class="item-info">
-            <p><%= item.brand %></p>
-            <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-            <p>美白評価：<%= item.avg_whitening %></p>
-            <p>カテゴリー：<%= item.genre.name %></p>
-            <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+  <%= render 'search-bar', genres: @genres %>
+  <% if params[:genre_id] %>
+	  <div class="subtitle">
+      <h3>「<%= @genre.name %>」ランキング</h3>
+    </div>
+    <% @items.each.with_index(1) do |item, i| %>
+      <% i += @ranking %>
+      <div class="items">
+        <div class="rank-image">
+          <h4>第<%= i %>位</h4>
+          <div class="item-image">
+            <%= image_tag item.get_image(200, 200) %>
           </div>
         </div>
-      <% end %>
-    <% else %>
+        <div class="item-info">
+          <p><%= item.brand %></p>
+          <h6><%= link_to item.name, item_path(item.id),class: "item-name" %></h6>
+          <p>
+            美白評価：<%= item.avg_whitening %>
+            <% if item.reviews.any? %>
+              (口コミ<%= item.reviews.count %>件)
+            <% end %>
+          </p>
+          <p>カテゴリー：<%= item.genre.name %></p>
+          <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
+          <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
     <div class="subtitle">
       <h3>全カテゴリーランキング</h3>
     </div>
-      <% @all_ranks.each.with_index(1) do |item, i| %>
-        <div class="item">
-          <div class="rank-image">
-            <h4>第<%= i %>位</h4>
-            <div class="item-image">
-              <%= image_tag item.get_image(200, 200) %>
-            </div>
-          </div>
-          <div class="item-info">
-            <p><%= item.brand %></p>
-            <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-            <p>
-              美白評価：<%= item.avg_whitening %>
-              <% if item.reviews.any? %>
-                (口コミ<%= item.reviews.count %>件)
-              <% end %>
-            </p>
-            <p>カテゴリー：<%= item.genre.name %></p>
-            <p>参考価格：<%= item.price %>円／<%= item.capacity %> | 発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+    <% @items.each.with_index(1) do |item, i| %>
+      <% i += @ranking %>
+      <div class="items">
+        <div class="rank-image">
+          <h4>第<%= i %>位</h4>
+          <div class="item-image">
+            <%= image_tag item.get_image(200, 200) %>
           </div>
         </div>
-      <% end %>
+        <div class="item-info">
+          <p><%= item.brand %></p>
+          <h6><%= link_to item.name, item_path(item.id),class: "item-name" %></h6>
+          <p>
+            美白評価：<%= item.avg_whitening %>
+            <% if item.reviews.any? %>
+              (口コミ<%= item.reviews.count %>件)
+            <% end %>
+          </p>
+          <p>カテゴリー：<%= item.genre.name %></p>
+          <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
+          <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+        </div>
+      </div>
     <% end %>
-    <div class="paginate">
-      <%= paginate @all_ranks %>
-  </div>
+  <% end %>
+  <%= paginate @items %>
 </div>

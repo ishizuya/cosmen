@@ -4,41 +4,12 @@
   </div>
   <% if @reviews.any? %>
     <div class="subtitle">
-      <h5>口コミ件数 <%= @reviews.count %> 件</h6>
+      <h5>口コミ件数 <%= @reviews_count %> 件</h6>
     </div>
-    <div class="review-index">
-      <% @reviews.each do |review| %>
-        <div class="review-show">
-          <p><%= review.item.brand %></p>
-          <h5><%= link_to review.item.name, item_path(review.item_id), class:"review-name" %></h5>
-           <p>投稿日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
-          <table class="t-review">
-            <tr>
-              <th>保湿効果：<%= review.moisturizing %></th>
-            </tr>
-            <tr>
-              <th>美白効果：<%= review.whitening %></th>
-            </tr>
-            <tr>
-              <th>シワ改善効果：<%= review.wrinkle %></th>
-            </tr>
-            <tr>
-              <th>ニキビ改善効果：<%= review.acne_cure %></th>
-            </tr>
-            <tr>
-              <th>刺激の無さ：<%= review.no_irritation %></th>
-            </tr>
-          </table>
-          <p class="review-comment"><%= review.comment %></p>
-          <div class="delete-btn">
-            <%= link_to "削除する", item_review_path(review.item, review), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-dark btn-sm" %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="subtitle">
-        <h5>口コミはありません</h5>
-      </div>
-    <% end %>
-  </div>
+    <%= render 'review', reviews: @reviews %>
+  <% else %>
+    <div class="subtitle">
+      <h5>口コミはありません</h5>
+    </div>
+  <% end %>
 </div>

@@ -1,8 +1,9 @@
 class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @reviews = Review.all.order(id: "DESC")
+    @reviews = Kaminari.paginate_array(@reviews).page(params[:page]).per(10)
   end
 
   def show

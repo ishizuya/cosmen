@@ -26,7 +26,7 @@ Genre.create!(
 
 require "csv"
 
-CSV.foreach('db/test2.csv') do |info|
+CSV.foreach('db/items.csv') do |info|
   Item.create(
      :brand => info[0],
      :name => info[1],
@@ -34,7 +34,6 @@ CSV.foreach('db/test2.csv') do |info|
      :price => info[3],
      :release_date => info[4],
      :capacity => info[5],
-     :introduction => info[6],
-     :image =>  info[7]
+     :introduction => info[6]
      )
 end

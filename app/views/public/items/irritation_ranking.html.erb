@@ -1,6 +1,6 @@
 <div class="all-view">
   <div class="title">
-    <h2>安全性ランキング</h2>
+    <h2>敏感肌向けランキング</h2>
   </div>
   <%= render 'search-bar', genres: @genres %>
 	<% if params[:genre_id] %>
@@ -8,6 +8,7 @@
       <h3>「<%= @genre.name %>」ランキング</h3>
     </div>
     <% @items.each.with_index(1) do |item, i| %>
+      <% i += @ranking %>
       <div class="items">
         <div class="rank-image">
           <h4>第<%= i %>位</h4>
@@ -17,8 +18,8 @@
         </div>
         <div class="item-info">
           <p><%= item.brand %></p>
-          <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-          <p>安全性評価：<%= item.avg_no_irritation %>
+          <h6><%= link_to item.name, item_path(item.id),class: "item-name" %></h6>
+          <p>敏感肌向け評価：<%= item.avg_no_irritation %>
             <% if item.reviews.any? %>
               (口コミ<%= item.reviews.count %>件)
             <% end %>
@@ -34,7 +35,8 @@
       <h3>全カテゴリーランキング</h3>
     </div>
     <% @items.each.with_index(1) do |item, i| %>
-      <div class="item">
+      <% i += @ranking %>
+      <div class="items">
         <div class="rank-image">
           <h4>第<%= i %>位</h4>
           <div class="item-image">
@@ -43,8 +45,13 @@
         </div>
         <div class="item-info">
           <p><%= item.brand %></p>
-          <h5><%= link_to item.name, item_path(item.id),class: "item-name" %></h5>
-          <p>安全性評価：<%= item.avg_no_irritation %></p>
+          <h6><%= link_to item.name, item_path(item.id),class: "item-name" %></h6>
+          <p>
+            敏感肌向け評価：<%= item.avg_no_irritation %>
+            <% if item.reviews.any? %>
+              (口コミ<%= item.reviews.count %>件)
+            <% end %>
+          </p>
           <p>カテゴリー：<%= item.genre.name %></p>
           <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
           <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
@@ -52,4 +59,5 @@
       </div>
     <% end %>
   <% end %>
+  <%= paginate @items %>
 </div>

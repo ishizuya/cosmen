@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :capacity, presence: true
   validates :introduction, presence: true
-  validates :release_date, presence: true
+  # validates :release_date, presence: true
 
   scope :where_genre_active, -> { joins(:genre) }
 
@@ -128,9 +128,13 @@ class Item < ApplicationRecord
     end
   end
 
-
   def self.search(keyword)
       where(["name like? OR brand like? OR introduction like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
   end
 
+  def self.release_date
+    unless release_date.presence?
+      0
+    end
+  end
 end

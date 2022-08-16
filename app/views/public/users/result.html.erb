@@ -2,8 +2,8 @@
   <div class="title">
     <h2>化粧品診断結果</h2>
   </div>
-  <div class="result">
-    <% if @user.diagnosis == "1" %>
+  <% if @user.diagnosis == "1" %>
+    <div class="result">
       <h4>あなたには<strong>保湿</strong>効果の高い化粧品をおススメします</h4>
       <p>お肌を保湿するには、保湿成分(水分)とエモリエント成分(油分)のバランスが重要です。<br>
           保湿成分は皮膚に足りない水分を補うこと。<br>
@@ -17,8 +17,11 @@
           <li>NMF(天然保湿因子):アミノ酸、PCA-Naなど</li>
         </ul>
       </div>
-      <%= render "recommend-item", items: @items %>
-    <% elsif @user.diagnosis == "2" %>
+    </div>
+    <h5 class="subtitle">乾燥にお悩みの方におすすめの化粧品</h5>
+    <%= render "public/items/item", items: @items %>
+  <% elsif @user.diagnosis == "2" %>
+    <div class="result">
       <h4>あなたには<strong>美白</strong>効果の高い化粧品をおススメします</h4>
       <p>シミが気になる方や美白を求める方には、下記のような美白有効成分が配合された化粧品を使用することで、メラニンの蓄積を抑えることができます。<br>
         さらに、医薬部外品は国が有効成分が有効量配合されていることを承認しているため、より効果があるでしょう。<br>
@@ -29,8 +32,11 @@
         <li>トラネキサム酸</li>
         <li>ニコチン酸アミド</li>
       </ul>
-      <%= render "recommend-item", items: @items %>
-    <% elsif @user.diagnosis == "3" %>
+    </div>
+    <h5 class="subtitle">シミや美白におすすめの化粧品</h5>
+    <%= render "public/items/item", items: @items %>
+  <% elsif @user.diagnosis == "3" %>
+    <div class="result">
      <h4>あなたには<strong>しわ</strong>改善効果の高い化粧品をおススメします</h4>
      <p>シワは、乾燥や紫外線によるダメージでによって肌の真皮層のコラーゲンやエラスチンが変性、減少することで形成されます。<br>
         シワを防ぐには、しっかりと保湿をし、紫外線ケアをすることが大切です。<br>
@@ -39,8 +45,11 @@
         <li>ナイアシンアミド</li>
         <li>ビタミンA誘導体(レチノール)</li>
       </ul>
-      <%= render "recommend-item", items: @items %>
-    <% elsif @user.diagnosis == "4" %>
+    </div>
+    <h5 class="subtitle">シワやたるみにおすすめの化粧品</h5>
+    <%= render "public/items/item", items: @items %>
+  <% elsif @user.diagnosis == "4" %>
+    <div class="result">
       <h4>あなたには<strong>肌荒れ・ニキビ</strong>改善効果の高い化粧品をおススメします</h4>
       <p>ニキビや肌荒れの原因には、ターンオーバーの乱れ、乾燥、過剰な皮脂など、複数の要因があります。<br>
        毎日のスキンケアをしっかりと行い、肌質に合った化粧品を使用することでお肌のバリア機能を高めることが重要です。<br>
@@ -52,8 +61,11 @@
         <li>サリチル酸</li>
         <li>アラントイン</li>
       </ul>
-      <%= render "recommend-item", items: @items %>
-    <% elsif @user.diagnosis == "5" %>
+    </div>
+    <h5 class="subtitle">ニキビや肌荒れにおすすめの化粧品</h5>
+    <%= render "public/items/item", items: @items %>
+  <% elsif @user.diagnosis == "5" %>
+    <div class="result">
       <h4>あなたには<strong>刺激の低い</strong>化粧品をおススメします</h4>
       <p>化粧品を使用するとピリピリとしみたり、痒みや、赤くなったりすることがあります。<br>
         それは、お肌のバリア機能が弱まっており、お肌に合わない成分が刺激になってしまっています。<br>
@@ -66,10 +78,12 @@
         <li>防腐剤(パラベン、エチルヘキシルグリセリン)</li>
         <li>旧表示指定成分(厚生労働省によって表示が義務付けられていた成分)</li>
       </ul>
-      <%= render "recommend-item", items: @items %>
-    <% else %>
+        <h5 class="subtitle">敏感肌の方におすすめの化粧品</h5>
+    </div>
+    <%= render "public/items/item", items: @items %>
+  <% else %>
       <div class="subtitle">
-        <p>化粧品診断をしてください</p>
+        <p>診断結果がありません　化粧品診断をしてください</p>
       </div>
     <% end %>
   </div>

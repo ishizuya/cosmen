@@ -13,13 +13,13 @@
       <th class="t-genre">カテゴリー</th>
       <th class="t-release">発売日</th>
       <th class="t-create">登録日時</th>
-      <th></th>
+      <th class="t-edit"></th>
     </tr>
     <% @items.each do |item| %>
     <tr class="record">
       <td><%= item.id %></td>
       <td><%= item.brand %></td>
-      <td><%= link_to item.name, admin_item_path(item.id) %></td>
+      <td><%= item.name %></td>
       <td><%= item.genre.name %></td>
       <td><%= item.release_date.strftime('%Y/%m/%d') %></td>
       <td><%= item.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
@@ -27,4 +27,5 @@
     </tr>
     <% end %>
   </table>
+  <%= paginate  @items %>
 </div>

@@ -13,27 +13,27 @@
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :item_id, :value => @item.id %>
       <div class="field">
-        <h5><%= f.label :"美白", class: "mt-4" %></h5>
-        <p>シミの改善や美白にどの程度効果がありますか？</p>
-        <%= f.select :whitening, *[1..5], include_blank: "選択して下さい" %>
-      </div>
-      <div class="field">
-        <h5><%= f.label :"シワ", class: "mt-4" %></h5>
-        <p>シワやお肌のたるみの改善にどの程度効果がありますか？</p>
-        <%= f.select :wrinkle, *[1..5], include_blank: "選択して下さい" %>
-      </div>
-      <div class="field">
-        <h5><%= f.label :"保湿", class: "mt-4" %></h5>
+        <h5><%= f.label :"保湿効果", class: "mt-4" %></h5>
         <p>保湿感や乾燥肌の改善はどの程度効果がありますか？</p>
         <%= f.select :moisturizing, *[1..5], include_blank: "選択して下さい" %>
       </div>
       <div class="field">
-        <h5><%= f.label :"肌荒れ", class: "mt-4" %></h5>
+        <h5><%= f.label :"美白効果", class: "mt-4" %></h5>
+        <p>シミの改善や美白にどの程度効果がありますか？</p>
+        <%= f.select :whitening, *[1..5], include_blank: "選択して下さい" %>
+      </div>
+      <div class="field">
+        <h5><%= f.label :"シワ改善効果", class: "mt-4" %></h5>
+        <p>シワやお肌のたるみの改善にどの程度効果がありますか？</p>
+        <%= f.select :wrinkle, *[1..5], include_blank: "選択して下さい" %>
+      </div>
+      <div class="field">
+        <h5><%= f.label :"ニキビ改善効果", class: "mt-4" %></h5>
         <p>肌荒れやニキビの改善にどの程度効果がありますか？</p>
         <%= f.select :acne_cure, *[1..5], include_blank: "選択して下さい" %>
       </div>
       <div class="field">
-        <h5><%= f.label :"安全性", class: "mt-4" %></h5>
+        <h5><%= f.label :"敏感肌向け", class: "mt-4" %></h5>
         <p>刺激や赤みや痒みが無くが安心して使えますか？</p>
         <%= f.select :no_irritation, *[1..5], include_blank: "選択して下さい" %>
       </div>
