@@ -14,7 +14,6 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      flash[:success] = '更新しました'
       redirect_to mypage_path(@user)
     else
       render 'edit'
@@ -29,7 +28,6 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @user.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会処理を実行しました"
     redirect_to root_path
   end
 
@@ -61,7 +59,7 @@ class Public::UsersController < ApplicationController
   def save
     @user = User.find(current_user.id)
     input = [params[:user][:question1],params[:user][:question2], params[:user][:question3], params[:user][:question4], params[:user][:question5]].join
-    p input
+    # p input
     if input == "12222" or input == "11112" or input == "12112" or input == "11212" or input == "11122" or input == "12212" or input == "12122" or input == "11222" or input == "22222"
        @user.diagnosis = "1"
     elsif input ==  "21222"
@@ -74,7 +72,6 @@ class Public::UsersController < ApplicationController
       @user.diagnosis = "5"
     end
     if @user.update(user_params)
-      flash[:notice] = "診断が完了しました"
       redirect_to result_path
     else
       redirect_to :action => "diagnosis"

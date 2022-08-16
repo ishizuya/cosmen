@@ -6,8 +6,13 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
-  validates :name, presence:true
+  validates :name, presence: true
   validates :genre_id, presence:true
+  validates :brand, presence: true
+  validates :price, presence: true
+  validates :capacity, presence: true
+  validates :introduction, presence: true
+  validates :release_date, presence: true
 
   scope :where_genre_active, -> { joins(:genre) }
 
@@ -69,7 +74,7 @@ class Item < ApplicationRecord
 
   def avg_reviews
     unless self.reviews.empty?
-      (avg_whitening + avg_wrinkle + avg_moisturizing + avg_acne_cure + avg_no_irritation)/5.round(1)
+      ((avg_whitening + avg_wrinkle + avg_moisturizing + avg_acne_cure + avg_no_irritation)/5).round(1)
     else
       "未評価"
     end

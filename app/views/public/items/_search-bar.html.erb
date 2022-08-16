@@ -1,0 +1,17 @@
+<div class="sidebar">
+	<h4>カテゴリー別</h4>
+	<div class="actions">
+  	<%= link_to "全カテゴリー", ranking_path, class: "btn btn-secondary btn-sm" %>
+  	<% genres.each do |genre| %>
+	  	<%= link_to genre.name, ranking_path(genre_id: genre.id), class: "btn btn-secondary btn-sm" %>
+  	<% end %>
+	</div>
+	<h4>お悩み別</h4>
+	<div class="actions">
+		<%= link_to "美白", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "シワ", wrinkle_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "肌荒れ", acne_cure_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "乾燥", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
+		<%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
+	</div>
+</div>

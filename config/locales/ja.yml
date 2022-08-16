@@ -36,10 +36,21 @@ ja:
       sex:
         woman: "女性"
         male: "男性"
-        others: "答えたくない"
       skin_type:
         normal: "普通肌"
         dry: "乾燥肌"
         oily: "脂性肌"
         mixed: "混合肌"
         sensitive: "敏感肌"
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 「ユーザーネーム」
+        email: 「メールアドレス」
+        age: 「年齢」
+        sex: 「性別」
+        skin_type: 「肌質」
+        password: 「パスワード」
+        password_confirmation: 「確認パスワード」

@@ -7,7 +7,13 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites
 
+  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :sex, presence: true
+  validates :age, presence: true
+  validates :skin_type, presence: true
+
   enum age: { teens: 0, twenties: 1, thirties: 2, forties: 3, fifties: 4, sixties: 5}
-  enum sex: { woman: 0, male: 1, others: 2}
+  enum sex: { woman: 0, male: 1}
   enum skin_type: { normal: 0, dry: 1, oily: 2, mixed: 3, sensitive: 4}
 end

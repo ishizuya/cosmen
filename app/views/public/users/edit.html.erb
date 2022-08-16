@@ -2,6 +2,13 @@
   <div class="title">
     <h2>ユーザー情報編集</h2>
   </div>
+  <% if @user.errors.any? %>
+    <ul class="errors-message">
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <div class="form">
     <%= form_with model: @user, url: update_information_path do |f| %>
       <div class="field">
@@ -25,11 +32,11 @@
         <%= f.select :skin_type, User.skin_types.keys.map {|k| [I18n.t("enums.user.skin_type.#{k}"), k]}, include_blank: "選択して下さい", size: 60  %>
       </div>
       <div class="actions">
-        <%= f.submit "変更を保存", class: 'btn-block btn-dark btn-sm' %>
+        <%= f.submit "変更を保存", class: 'btn-block btn-dark btn-lg' %>
       </div>
     <% end %>
     <div class="actions">
-      <%= link_to "退会する", withdraw_path(@user), method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn-block btn-dark btn-sm" %>
+      <%= link_to "退会する", withdraw_path(@user), method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn-block btn-dark btn-lg" %>
     </div>
   </div>
 </div>

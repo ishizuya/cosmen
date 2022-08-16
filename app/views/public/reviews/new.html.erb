@@ -2,46 +2,43 @@
   <div class="title">
     <h2>口コミ投稿</h2>
   </div>
-  <div class="item">
+  <div class="review-item">
     <div class="item-image">
       <%= image_tag @item.get_image(100, 100) %>
     </div>
-    <div class="review-item">
-        <p><%= @item.brand %><br>
-        <%= link_to @item.name, item_path(@item.id) %></p>
-    </div>
-    </div>
+    <h5><%= @item.brand %>　<%= link_to @item.name, item_path(@item.id) %></h5>
+  </div>
   <div class="form">
     <%= form_with model: @review, url:item_reviews_path, local:true do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :item_id, :value => @item.id %>
       <div class="field">
-        <%= f.label :"美白", class: "mb-0" %><br />
-        <span>シミの改善や美白にどの程度効果がありますか？</span>
+        <h5><%= f.label :"美白", class: "mt-4" %></h5>
+        <p>シミの改善や美白にどの程度効果がありますか？</p>
         <%= f.select :whitening, *[1..5], include_blank: "選択して下さい" %>
       </div>
       <div class="field">
-        <%= f.label :"シワ", class: "mb-0" %><br />
-        <span>シワやお肌のたるみの改善にどの程度効果がありますか？</span>
+        <h5><%= f.label :"シワ", class: "mt-4" %></h5>
+        <p>シワやお肌のたるみの改善にどの程度効果がありますか？</p>
         <%= f.select :wrinkle, *[1..5], include_blank: "選択して下さい" %>
       </div>
       <div class="field">
-        <%= f.label :"保湿", class: "mb-0" %><br />
-        <span>保湿感や乾燥肌の改善はどの程度効果がありますか？</span>
+        <h5><%= f.label :"保湿", class: "mt-4" %></h5>
+        <p>保湿感や乾燥肌の改善はどの程度効果がありますか？</p>
         <%= f.select :moisturizing, *[1..5], include_blank: "選択して下さい" %>
       </div>
       <div class="field">
-        <%= f.label :"肌荒れ", class: "mb-0" %><br />
-        <span>肌荒れやニキビの改善にどの程度効果がありますか？</span>
+        <h5><%= f.label :"肌荒れ", class: "mt-4" %></h5>
+        <p>肌荒れやニキビの改善にどの程度効果がありますか？</p>
         <%= f.select :acne_cure, *[1..5], include_blank: "選択して下さい" %>
       </div>
       <div class="field">
-        <%= f.label :"安全性", class: "mb-0" %><br />
-        <span>刺激や赤みや痒みが無くが安心して使えますか？</span>
+        <h5><%= f.label :"安全性", class: "mt-4" %></h5>
+        <p>刺激や赤みや痒みが無くが安心して使えますか？</p>
         <%= f.select :no_irritation, *[1..5], include_blank: "選択して下さい" %>
       </div>
       <div class="text-area">
-        <%= f.label :"コメント" %><br />
+        <h5><%= f.label :"コメント", class: "mt-4" %></h5>
         <%= f.text_area :comment %>
       </div>
       <div class="actions">

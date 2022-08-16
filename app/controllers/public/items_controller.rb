@@ -11,56 +11,63 @@ class Public::ItemsController < ApplicationController
 
   def ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.review_sort_value*-1 }
+    @items = Item.all.sort_by{|item| item.review_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @items.select{ |item| item.genre_id == @genre.id }
     end
+    @items = Kaminari.paginate_array(@items).page(params[:page])
   end
 
   def whitening_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.whitening_sort_value*-1 }
+    @items = Item.all.sort_by{|item| item.whitening_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @items.select{ |item| item.genre_id == @genre.id }.page(params[:page])
+    else
+      @items = Kaminari.paginate_array(@items).page(params[:page])
     end
   end
 
   def wrinkle_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.wrinkle_sort_value*-1 }
+    @items = Item.all.sort_by{|item| item.wrinkle_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
     end
+    @items = Kaminari.paginate_array(@items).page(params[:page])
   end
 
   def moisturizing_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.moisturizing_sort_value*-1 }
+    @items = Item.all.sort_by{|item| item.moisturizing_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
     end
+    @items = Kaminari.paginate_array(@items).page(params[:page])
   end
 
   def acne_cure_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.acne_cure_sort_value*-1 }
+    @items = Item.all.sort_by{|item| item.acne_cure_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @items.select{ |item| item.genre_id == @genre.id }
     end
+    @items = Kaminari.paginate_array(@items).page(params[:page])
   end
 
   def irritation_ranking
     @genres = Genre.all
-    @all_ranks = Item.all.sort_by{|item| item.no_irritation_sort_value*-1 }
+    @items = Item.all.sort_by{|item| item.no_irritation_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @genre_ranks = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
     end
+    @items = Kaminari.paginate_array(@items).page(params[:page])
   end
 
   def index
@@ -71,11 +78,9 @@ class Public::ItemsController < ApplicationController
   def search
     @genres = Genre.all
     @items = Item.all
-    # .page(params[:page]).per(12)
     if params[:keyword].present?
       @keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
       @keywords.each_with_index do |keyword, i|
-        # @items = @items.search(keyword) if i == 0
         @items = @items.merge(@items.search(keyword))
       end
       if params[:genre_id].present?
@@ -88,6 +93,10 @@ class Public::ItemsController < ApplicationController
         @items = @items.select{ |item| item.genre_id == @genre.id }
       end
     end
+    @items = @items.sort do |a, b|
+                b[:release_date] <=> a[:release_date]
+              end
+    @items = Kaminari.paginate_array(@items).page(params[:page])
     render "index"
   end
 
