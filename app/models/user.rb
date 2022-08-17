@@ -16,4 +16,17 @@ class User < ApplicationRecord
   enum age: { teens: 0, twenties: 1, thirties: 2, forties: 3, fifties: 4, sixties: 5}
   enum sex: { woman: 0, male: 1}
   enum skin_type: { normal: 0, dry: 1, oily: 2, mixed: 3, sensitive: 4}
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+      user.sex = 1
+      user.age = 1
+      user.skin_type = 0
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+  end
+
 end
