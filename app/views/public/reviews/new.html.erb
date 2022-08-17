@@ -6,7 +6,7 @@
     <div class="item-image">
       <%= image_tag @item.get_image(100, 100) %>
     </div>
-    <h5><%= @item.brand %>　<%= link_to @item.name, item_path(@item.id) %></h5>
+    <h5><%= @item.brand %>　<%= link_to @item.name, item_path(@item.id), class: "review-name" %></h5>
   </div>
   <div class="form">
     <%= form_with model: @review, url:item_reviews_path, local:true do |f| %>

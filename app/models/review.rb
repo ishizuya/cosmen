@@ -10,12 +10,4 @@ class Review < ApplicationRecord
   validates :moisturizing, presence: true
   validates :no_irritation, presence: true
   validates :acne_cure, presence: true
-
-  def avg_wrinkle
-    unless self.review.empty?
-      comments.average(:rate_id).round(1)
-    else
-      0.0
-    end
-  end
 end

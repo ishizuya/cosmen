@@ -14,7 +14,14 @@
     </p>
     <p>カテゴリー：<%= item.genre.name %></p>
     <p>参考価格：<%= item.price %>円／<%= item.capacity %>
-    <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+    <p>
+      発売日：
+      <% if item.release_date.presence %>
+        <%= item.release_date.strftime('%Y/%m/%d') %>
+      <% else %>
+        －
+      <% end %>
+    </p>
   </div>
 </div>
 <% end %>

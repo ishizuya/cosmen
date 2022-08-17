@@ -93,11 +93,7 @@ class Public::ItemsController < ApplicationController
       @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
     end
     @items = Kaminari.paginate_array(@items).page(params[:page])
-    if params[:page].present?
-      @ranking = params[:page].to_i*5-5
-    else
-      @ranking = 0
-    end
+
   end
 
   def index
@@ -123,9 +119,10 @@ class Public::ItemsController < ApplicationController
         @items = @items.select{ |item| item.genre_id == @genre.id }
       end
     end
-    @items = @items.sort do |a, b|
-                b[:release_date] <=> a[:release_date]
-              end
+    @items = @items.sort_by do |v|
+      [v[:release_date].to_s]
+    end
+    @items = @items.reverse
     @items = Kaminari.paginate_array(@items).page(params[:page])
     render "index"
   end

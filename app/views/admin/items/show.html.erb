@@ -8,8 +8,16 @@
     </div>
     <div class="item-introduction">
       <div class="item-info">
-        <p>ジャンル：<%= @item.genre.name %></p>
-        <p>税込価格(税抜価格)：<%= @item.add_tax_price %>円(<%= @item.price.to_s(:delimited) %>円)／<%= @item.capacity %>　発売日：<%= @item.release_date.strftime('%Y/%m/%d') %></p>
+        <p>カテゴリー：<%= @item.genre.name %></p>
+        <p>税込価格(税抜価格)：<%= @item.add_tax_price %>円(<%= @item.price.to_s(:delimited) %>円)／<%= @item.capacity %></p>
+        <p>
+          発売日：
+          <% if @item.release_date.presence %>
+            <%= @item.release_date.strftime('%Y/%m/%d') %>
+          <% else %>
+            －
+          <% end %>
+        </p>
         <p class="mb-0">商品説明</p>
         <p><%= @item.introduction %></p>
       </div>

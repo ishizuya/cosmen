@@ -16,7 +16,14 @@
         </p>
         <p>カテゴリー：<%= @item.genre.name %></p>
         <p>税込価格(税抜価格)：<%= @item.add_tax_price %>円</%>(<%= @item.price.to_s(:delimited) %>円)／<%= @item.capacity %></p>
-        <p>発売日：<%= @item.release_date.strftime('%Y/%m/%d') %></p>
+        <p>
+          発売日：
+          <% if @item.release_date.presence %>
+            <%= @item.release_date.strftime('%Y/%m/%d') %>
+          <% else %>
+            －
+          <% end %>
+        </p>
         <p class="mb-0">商品説明</p>
         <p><%= @item.introduction %></p>
       </div>
@@ -52,7 +59,33 @@
       <h5 class="subtitle">最新の口コミ</h5>
       <p>口コミ件数<%= @reviews_count %>件</p>
     </div>
-    <%= render 'public/reviews/review', reviews: @reviews %>
+    <div class="review-index">
+      <% @reviews.each do |review| %>
+        <div class="review-show">
+          <p><%= review.user.age_i18n %>／<%= review.user.sex_i18n %>／<%= review.user.skin_type_i18n %></p>
+          <p>投稿日時：<%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+          <table class="t-review">
+            <tr>
+              <th>保湿評価：<%= review.moisturizing %></th>
+            </tr>
+            <tr>
+              <th>美白評価：<%= review.whitening %></th>
+            </tr>
+            <tr>
+              <th>シワ改善評価：<%= review.wrinkle %></th>
+            </tr>
+            <tr>
+              <th>ニキビ改善評価：<%= review.acne_cure %></th>
+            </tr>
+            <tr>
+              <th>敏感肌向け評価：<%= review.no_irritation %></th>
+            </tr>
+          </table>
+          <p class="review-comment"><%= review.comment %></p>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @reviews %>
   <% else %>
     <div class="subtitle">
       <p>口コミはありません</p>

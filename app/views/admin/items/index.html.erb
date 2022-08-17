@@ -21,7 +21,13 @@
       <td><%= item.brand %></td>
       <td><%= item.name %></td>
       <td><%= item.genre.name %></td>
-      <td><%= item.release_date.strftime('%Y/%m/%d') %></td>
+      <td>
+        <% if item.release_date.presence %>
+          <%= item.release_date.strftime('%Y/%m/%d') %>
+        <% else %>
+          －
+        <% end %>
+      </td>
       <td><%= item.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
       <td><%= link_to "詳細", admin_item_path(item.id), class:"btn btn-dark btn-sm m-1" %></td>
     </tr>

@@ -10,7 +10,6 @@
 
 .btn-flat-border {
   display: inline-block;
-  // padding: 0.3em 1em;
   margin: 0.5em;
   text-decoration: none;
   color: #d3d3d3;
@@ -61,10 +60,6 @@ select {
   text-align: center;
 }
 
-// span {
-//   font-size: 0.8em;
-// }
-
 .all-view{
   width: 80%;
   margin: 1em auto 3em;
@@ -73,7 +68,6 @@ select {
 .title {
   display: inline-box;
   text-align: center;
-  // margin: 1em;
 }
 
 h2 {
@@ -91,7 +85,7 @@ h2 {
 
 .top-image {
   width: 100%;
-  height: 300px; /* 高さ300px */
+  height: 300px;
   background-image: url('/assets/top_image.jpg');
   background-size: cover;
   background-position: top;
@@ -211,16 +205,6 @@ h2 {
   font-weight: bold;
   font-size: 1.3em;
 }
-
-// .item-show{
-//   width: 90%;
-//   display: flex;
-//   border: solid 1px;
-//   border-radius: 5px;
-//   margin: 5px auto;
-//   font-weight: bold;
-//   padding: 1em;
-// }
 
 .rate {
   display: flex;

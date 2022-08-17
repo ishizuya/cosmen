@@ -1,6 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @review = Review.new
     @item = Item.find(params[:item_id])
@@ -11,7 +11,6 @@ class Public::ReviewsController < ApplicationController
     @item = Item.find(params[:item_id])
     @review = Review.new(review_params)
     if @review.save
-      flash[:success] = 'レビューを投稿しました'
       redirect_to item_path(@item.id)
     else
       render 'new'

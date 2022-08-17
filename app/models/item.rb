@@ -131,10 +131,4 @@ class Item < ApplicationRecord
   def self.search(keyword)
       where(["name like? OR brand like? OR introduction like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
   end
-
-  def self.release_date
-    unless release_date.presence?
-      0
-    end
-  end
 end
