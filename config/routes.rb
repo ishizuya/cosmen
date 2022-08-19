@@ -33,9 +33,6 @@ Rails.application.routes.draw do
     get 'reviews' => 'reviews#index', as: "reviews"
 
     resources :items,only:[:index,:show] do
-      # collection do
-      #   get 'top'
-      # end
       resources :reviews,only:[:new,:create,:destroy]
       resource :favorites,only:[:create,:destroy]
     end
