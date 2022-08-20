@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_20_135343) do
+ActiveRecord::Schema.define(version: 2022_08_20_143510) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2022_08_20_135343) do
     t.integer "genre_id", null: false
     t.string "name", default: "", null: false
     t.string "brand", default: "", null: false
-    t.text "introduction", default: "", null: false
+    t.text "introduction", null: false
     t.integer "price", null: false
     t.string "capacity", null: false
     t.date "release_date"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2022_08_20_135343) do
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "item_id", null: false
-    t.text "comment", default: "", null: false
+    t.text "comment", null: false
     t.integer "whitening", null: false
     t.integer "wrinkle", null: false
     t.integer "moisturizing", null: false
