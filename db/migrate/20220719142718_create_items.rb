@@ -7,7 +7,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.text :introduction,     null: false
       t.integer :price,         null: false
       t.integer :capacity,      null: false
-      t.date :release_date,     null: false, default: ""
+      t.date :release_date,     null: false
 
       t.timestamps
     end
