@@ -21,4 +21,4 @@ ActiveStorage.start()
 
 require('jquery')
 
-import "../stylesheets/application"
+import "stylesheets/application"
