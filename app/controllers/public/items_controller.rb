@@ -93,7 +93,11 @@ class Public::ItemsController < ApplicationController
       @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
     end
     @items = Kaminari.paginate_array(@items).page(params[:page])
-
+    if params[:page].present?
+      @ranking = params[:page].to_i*5-5
+    else
+      @ranking = 0
+    end
   end
 
   def index
