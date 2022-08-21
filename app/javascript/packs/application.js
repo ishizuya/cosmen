@@ -20,5 +20,3 @@ Rails.start()
 ActiveStorage.start()
 
 require('jquery')
-
-import "stylesheets/application"
