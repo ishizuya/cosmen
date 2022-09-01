@@ -2,7 +2,25 @@
   <div class="title">
     <h2>保湿ランキング</h2>
   </div>
-  <%= render 'search-bar', genres: @genres %>
+
+  <div class="sidebar">
+	  <h4>カテゴリー別</h4>
+	  <div class="actions">
+  	  <%= link_to "全カテゴリー", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
+  	  <% @genres.each do |genre| %>
+	  	  <%= link_to genre.name, moisturizing_ranking_path(genre_id: genre.id), class: "btn btn-secondary btn-sm" %>
+  	  <% end %>
+	  </div>
+	  <h4>お悩み別</h4>
+	  <div class="actions">
+		  <%= link_to "乾燥", moisturizing_ranking_path, class: "btn btn-secondary btn-sm" %>
+		  <%= link_to "美白", whitening_ranking_path, class: "btn btn-secondary btn-sm" %>
+		  <%= link_to "シワ", wrinkle_ranking_path, class: "btn btn-secondary btn-sm" %>
+		  <%= link_to "ニキビ", acne_cure_ranking_path, class: "btn btn-secondary btn-sm" %>
+		  <%= link_to "敏感肌", irritation_ranking_path, class: "btn btn-secondary btn-sm" %>
+	  </div>
+  </div>
+
   <% if params[:genre_id] %>
 	  <div class="subtitle">
       <h3>「<%= @genre.name %>」ランキング</h3>
@@ -27,7 +45,14 @@
           </p>
           <p>カテゴリー：<%= item.genre.name %></p>
           <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-          <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+          <p>
+            発売日：
+            <% if item.release_date.presence %>
+            	<%= item.release_date.strftime('%Y/%m/%d') %>
+          	<% else %>
+            	－
+          	<% end %>
+          </p>
         </div>
       </div>
     <% end %>
@@ -54,7 +79,14 @@
           </p>
           <p>カテゴリー：<%= item.genre.name %></p>
           <p>参考価格：<%= item.price %>円／<%= item.capacity %></p>
-          <p>発売日：<%= item.release_date.strftime('%Y/%m/%d') %></p>
+          <p>
+            発売日：
+            <% if item.release_date.presence %>
+            	<%= item.release_date.strftime('%Y/%m/%d') %>
+          	<% else %>
+            	－
+          	<% end %>
+          </p>
         </div>
       </div>
     <% end %>

@@ -30,7 +30,7 @@ class Public::ItemsController < ApplicationController
     @items = Item.all.sort_by{|item| item.whitening_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @items = @items.select{ |item| item.genre_id == @genre.id }.page(params[:page])
+      @items = @items.select{ |item| item.genre_id == @genre.id }
     end
     @items = Kaminari.paginate_array(@items).page(params[:page])
     if params[:page].present?
@@ -45,7 +45,7 @@ class Public::ItemsController < ApplicationController
     @items = Item.all.sort_by{|item| item.wrinkle_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @items.select{ |item| item.genre_id == @genre.id }
     end
     @items = Kaminari.paginate_array(@items).page(params[:page])
     if params[:page].present?
@@ -60,7 +60,7 @@ class Public::ItemsController < ApplicationController
     @items = Item.all.sort_by{|item| item.moisturizing_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @items.select{ |item| item.genre_id == @genre.id }
     end
     @items = Kaminari.paginate_array(@items).page(params[:page])
     if params[:page].present?
@@ -90,7 +90,7 @@ class Public::ItemsController < ApplicationController
     @items = Item.all.sort_by{|item| item.no_irritation_sort_value*-1 }
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @items = @all_ranks.select{ |item| item.genre_id == @genre.id }
+      @items = @items.select{ |item| item.genre_id == @genre.id }
     end
     @items = Kaminari.paginate_array(@items).page(params[:page])
     if params[:page].present?
