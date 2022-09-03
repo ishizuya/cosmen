@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    get 'search' => 'homes#search', as: 'search'
     resources :items
     resources :reviews,only:[:show,:destroy,:index]
     resources :users,only:[:edit,:update]
