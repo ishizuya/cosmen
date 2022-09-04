@@ -13,7 +13,6 @@ class Admin::ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    flash[:success] = '削除しました'
-    redirect_to reviews_path
+    redirect_to admin_reviews_path
   end
 end
