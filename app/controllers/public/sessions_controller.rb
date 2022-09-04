@@ -41,7 +41,7 @@ class Public::SessionsController < Devise::SessionsController
         redirect_to new_user_session_path
       end
     else
-      flash[:message] = '「メールアドレ」または「パスワード」が異なります。'
+      flash[:message] = '「メールアドレス」または「パスワード」が異なります。'
       redirect_to new_user_session_path
     end
   end

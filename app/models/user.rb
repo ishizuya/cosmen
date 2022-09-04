@@ -24,7 +24,6 @@ class User < ApplicationRecord
       user.sex = 1
       user.age = 1
       user.skin_type = 0
-      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
     end
   end
 

@@ -1,5 +1,11 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show, :edit, :update, :index, :withdraw, :favorites, :diagnosis, :result, :save]
+
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to root_path
+  end
 
   def show
     @user = current_user
